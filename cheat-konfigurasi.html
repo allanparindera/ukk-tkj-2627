@@ -18,8 +18,6 @@
   --primary: #0284c7;
   --primary-hover: #0369a1;
   --primary-subtle: #e0f2fe;
-  --green: #15803d;
-  --amber: #b45309;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
@@ -122,9 +120,10 @@ main {
 
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 
 @media (max-width: 768px) {
-  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
 }
 
 .form-group { margin-bottom: 12px; }
@@ -217,6 +216,22 @@ pre.code-block {
   margin: 0;
   white-space: pre-wrap;
   word-break: break-all;
+}
+
+/* SVG Topology Styles */
+.topo-svg-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 12px 0 16px;
+  overflow-x: auto;
+}
+.topo-svg-box svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Table */
@@ -316,7 +331,7 @@ table.data-table tr:hover td { background: #f8fafc; }
     <div class="card">
       <div class="card-title">Identitas Peserta &amp; Generator Variabel</div>
       <div class="callout">
-        Isi parameter nama dan NIS siswa. Seluruh konfigurasi Cisco, RouterOS, SSID Hotspot, dan email Web Proxy otomatis tersinkronisasi.
+        Isi nama dan NIS siswa. Seluruh konfigurasi Cisco, RouterOS, SSID Hotspot, dan email Web Proxy otomatis tersinkronisasi secara real-time.
       </div>
       <div class="grid-3">
         <div class="form-group">
@@ -367,21 +382,31 @@ table.data-table tr:hover td { background: #f8fafc; }
           <input type="text" id="in_iface_ap" class="form-input" value="ether3" oninput="refreshAll()">
         </div>
       </div>
-      <div class="grid-3">
+      <div class="grid-4">
         <div class="form-group">
           <label>Metode WAN</label>
-          <select id="in_wan_mode" class="form-select" onchange="refreshAll()">
+          <select id="in_wan_mode" class="form-select" onchange="toggleWanMode(); refreshAll();">
             <option value="dhcp" selected>DHCP Client (Otomatis)</option>
-            <option value="static">IP Statis (192.168.1.50/24)</option>
+            <option value="static">IP Statis (Manual)</option>
           </select>
+        </div>
+        <div class="form-group" id="grp_wan_ip">
+          <label>IP WAN Statis &amp; CIDR</label>
+          <input type="text" id="in_wan_ip" class="form-input" value="192.168.1.50/24" oninput="refreshAll()" disabled style="background:#f1f5f9;">
+        </div>
+        <div class="form-group" id="grp_wan_gw">
+          <label>Gateway &amp; DNS ISP</label>
+          <input type="text" id="in_wan_gw" class="form-input" value="192.168.1.1" oninput="refreshAll()" disabled style="background:#f1f5f9;">
         </div>
         <div class="form-group">
           <label>Sintaks RouterOS</label>
           <select id="in_ros_ver" class="form-select" onchange="refreshAll()">
-            <option value="v7" selected>RouterOS v7 (Rekomendasi Terkini)</option>
-            <option value="v6">RouterOS v6 (Legacy NTP)</option>
+            <option value="v7" selected>RouterOS v7</option>
+            <option value="v6">RouterOS v6 (Legacy)</option>
           </select>
         </div>
+      </div>
+      <div class="grid-2">
         <div class="form-group">
           <label>Interpretasi Poin 19</label>
           <select id="in_poin19" class="form-select" onchange="refreshAll()">
@@ -395,6 +420,100 @@ table.data-table tr:hover td { background: #f8fafc; }
 
   <!-- PANE 2: CISCO -->
   <div id="pane-cisco" class="pane">
+    <div class="card">
+      <div class="card-title">
+        <span>Diagram Topologi WAN Cisco Packet Tracer (Paket B)</span>
+      </div>
+      <div class="topo-svg-box">
+        <svg viewBox="0 0 900 260" width="900" height="260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Zones -->
+          <rect x="20" y="20" width="380" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
+          <text x="35" y="42" font-size="12" font-weight="bold" fill="#0369a1">KANTOR PUSAT (JAKARTA)</text>
+          
+          <rect x="500" y="20" width="380" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
+          <text x="515" y="42" font-size="12" font-weight="bold" fill="#0369a1">KANTOR CABANG (BANDUNG)</text>
+
+          <!-- Cloud WAN Center -->
+          <rect x="380" y="80" width="140" height="60" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+          <text x="450" y="105" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Cloud0</text>
+          <text x="450" y="122" font-size="10" text-anchor="middle" fill="#64748b">Frame Relay WAN</text>
+
+          <!-- Router 0 -->
+          <rect x="180" y="60" width="130" height="50" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+          <text x="245" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Router0 (HQ)</text>
+          <text x="245" y="98" font-size="9" text-anchor="middle" fill="#64748b">Fa0/0 RoAS | Se0/1/0</text>
+
+          <!-- Router 1 -->
+          <rect x="590" y="60" width="130" height="50" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+          <text x="655" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Router1 (Branch)</text>
+          <text x="655" y="98" font-size="9" text-anchor="middle" fill="#64748b">Fa0/0 RoAS | Se0/1/0</text>
+
+          <!-- Serial Lines -->
+          <path d="M 310 85 Q 345 75 380 95" fill="none" stroke="#dc2626" stroke-width="2"/>
+          <text x="345" y="75" font-size="9" fill="#dc2626" font-weight="bold">10.10.10.1 (DTE)</text>
+          <text x="365" y="110" font-size="8" fill="#64748b">Se0: 101 (DCE)</text>
+
+          <path d="M 520 95 Q 555 75 590 85" fill="none" stroke="#dc2626" stroke-width="2"/>
+          <text x="545" y="75" font-size="9" fill="#dc2626" font-weight="bold">10.10.10.2 (DTE)</text>
+          <text x="500" y="110" font-size="8" fill="#64748b">Se1: 201 (DCE)</text>
+
+          <!-- Switches HQ -->
+          <rect x="60" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
+          <text x="117" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-HQ-Server</text>
+          <text x="117" y="174" font-size="8" fill="#0284c7" text-anchor="middle">VLAN 10 (192.168.1.0/24)</text>
+
+          <rect x="220" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
+          <text x="277" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-HQ-ADM</text>
+          <text x="277" y="174" font-size="8" fill="#d97706" text-anchor="middle">VLAN 20 (192.168.2.0/24)</text>
+
+          <!-- Switches Branch -->
+          <rect x="570" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
+          <text x="627" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-BR-Finance</text>
+          <text x="627" y="174" font-size="8" fill="#0284c7" text-anchor="middle">VLAN 10 (192.168.10.0/24)</text>
+
+          <rect x="730" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
+          <text x="787" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-BR-ADM</text>
+          <text x="787" y="174" font-size="8" fill="#d97706" text-anchor="middle">VLAN 20 (192.168.20.0/24)</text>
+
+          <!-- Trunk Cables -->
+          <line x1="220" y1="110" x2="140" y2="145" stroke="#0f172a" stroke-width="2"/>
+          <text x="165" y="125" font-size="8" fill="#475569">Trunk</text>
+          <line x1="175" y1="163" x2="220" y2="163" stroke="#0f172a" stroke-width="2" stroke-dasharray="3"/>
+          <text x="195" y="158" font-size="8" fill="#475569">Cross</text>
+
+          <line x1="630" y1="110" x2="630" y2="145" stroke="#0f172a" stroke-width="2"/>
+          <text x="635" y="130" font-size="8" fill="#475569">Trunk</text>
+          <line x1="685" y1="163" x2="730" y2="163" stroke="#0f172a" stroke-width="2" stroke-dasharray="3"/>
+          <text x="700" y="158" font-size="8" fill="#475569">Cross</text>
+
+          <!-- Devices End -->
+          <rect x="40" y="200" width="85" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="82" y="215" font-size="8" text-anchor="middle">Server0 (.1.100)</text>
+
+          <rect x="135" y="200" width="60" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="165" y="215" font-size="8" text-anchor="middle">PC0 (Srv)</text>
+
+          <rect x="220" y="200" width="55" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="247" y="215" font-size="8" text-anchor="middle">PC / Print</text>
+
+          <rect x="285" y="200" width="55" height="24" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="312" y="215" font-size="8" text-anchor="middle">AP0 (WLAN)</text>
+
+          <rect x="560" y="200" width="65" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="592" y="215" font-size="8" text-anchor="middle">PC/Laptop</text>
+
+          <rect x="635" y="200" width="50" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="660" y="215" font-size="8" text-anchor="middle">Printer0</text>
+
+          <rect x="720" y="200" width="60" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
+          <text x="750" y="215" font-size="8" text-anchor="middle">PC1/PC2</text>
+
+          <rect x="790" y="200" width="60" height="24" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="820" y="215" font-size="8" text-anchor="middle">AP1 (WLAN)</text>
+        </svg>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-title">
         <span>Router0: Head Office (Jakarta)</span>
@@ -452,6 +571,54 @@ table.data-table tr:hover td { background: #f8fafc; }
   <div id="pane-mikrotik" class="pane">
     <div class="card">
       <div class="card-title">
+        <span>Diagram Topologi Mikrotik &amp; Kabel LAN (Paket C)</span>
+      </div>
+      <div class="topo-svg-box">
+        <svg viewBox="0 0 800 200" width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+          <!-- ISP Cloud -->
+          <rect x="40" y="70" width="110" height="50" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+          <text x="95" y="93" font-size="11" font-weight="bold" text-anchor="middle">ISP Internet</text>
+          <text x="95" y="108" font-size="9" fill="#64748b" text-anchor="middle">Gateway / DHCP</text>
+
+          <!-- Router MikroTik -->
+          <rect x="230" y="55" width="160" height="80" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+          <text x="310" y="80" font-size="13" font-weight="bold" text-anchor="middle">MikroTik Router</text>
+          <text x="310" y="96" font-size="9" fill="#0284c7" text-anchor="middle">NAT &bull; Firewall &bull; Proxy &bull; Hotspot</text>
+          <text x="310" y="112" font-size="8" fill="#64748b" text-anchor="middle">ether1: WAN | ether2: LAN | ether3: AP</text>
+
+          <!-- Cable Lines -->
+          <line x1="150" y1="95" x2="230" y2="95" stroke="#0284c7" stroke-width="2"/>
+          <text x="180" y="88" font-size="9" fill="#0284c7" font-weight="bold">ether1</text>
+
+          <line x1="390" y1="80" x2="490" y2="50" stroke="#0f172a" stroke-width="2"/>
+          <text x="440" y="58" font-size="9" font-weight="bold">ether2 (LAN)</text>
+
+          <line x1="390" y1="110" x2="490" y2="140" stroke="#0f172a" stroke-width="2"/>
+          <text x="440" y="132" font-size="9" font-weight="bold">ether3 (WLAN)</text>
+
+          <!-- Switch & LAN PC -->
+          <rect x="490" y="30" width="110" height="40" rx="4" fill="#ffffff" stroke="#64748b"/>
+          <text x="545" y="48" font-size="10" font-weight="bold" text-anchor="middle">Switch LAN</text>
+          <text x="545" y="60" font-size="8" fill="#64748b" text-anchor="middle">192.168.50.1/25</text>
+
+          <line x1="600" y1="50" x2="660" y2="50" stroke="#0f172a" stroke-width="1.5"/>
+          <rect x="660" y="35" width="100" height="30" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+          <text x="710" y="52" font-size="9" font-weight="bold" text-anchor="middle">PC Client (.2-.100)</text>
+
+          <!-- AP & Mobile Phone -->
+          <rect x="490" y="120" width="110" height="40" rx="4" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="545" y="138" font-size="10" font-weight="bold" text-anchor="middle">Access Point</text>
+          <text x="545" y="150" font-size="8" fill="#64748b" text-anchor="middle">192.168.20.1/24</text>
+
+          <path d="M 605 135 A 8 8 0 0 1 615 145 M 610 130 A 15 15 0 0 1 625 150" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+          <rect x="660" y="125" width="100" height="30" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+          <text x="710" y="142" font-size="9" font-weight="bold" text-anchor="middle">Smartphone Hotspot</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
         <span>Full RouterOS Configuration Script (.rsc) - Poin 1 s/d 19</span>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-sm btn-primary" onclick="copyBox('box_mikrotik_rsc')">Salin Script</button>
@@ -459,7 +626,7 @@ table.data-table tr:hover td { background: #f8fafc; }
         </div>
       </div>
       <div class="callout">
-        Script di bawah ini siap langsung di-paste ke <strong>New Terminal</strong> WinBox atau diupload ke menu <strong>Files</strong> lalu jalankan <code>/import file-name=UKK.rsc</code>.
+        Script di bawah ini siap ditempel ke <strong>New Terminal</strong> WinBox atau diimport via menu <strong>Files</strong> (<code>/import file-name=UKK.rsc</code>).
       </div>
       <div class="code-container">
         <div class="code-bar">RouterOS <span id="lbl_ros">v7</span> &bull; 19 Poin UKK Soal Paket C</div>
@@ -498,17 +665,53 @@ table.data-table tr:hover td { background: #f8fafc; }
       <p style="font-size:9pt; margin:0; color:#555;">SMKS KARTIKA X-1 JAKARTA &bull; TEKNIK KOMPUTER DAN JARINGAN</p>
     </div>
 
+    <!-- BAGIAN 1: PAKET B -->
     <div class="card">
       <div class="card-title">
-        <span>Dokumen Perencanaan Kantor PT. Teknologi Warungpedia (Gedung 4 Lantai)</span>
+        <span>BAGIAN 1: SPESIFIKASI &amp; PERENCANAAN WAN (PT. DIGITAL TECHNO INDONESIA)</span>
         <button class="btn btn-sm no-print" onclick="window.print()">Cetak Halaman (PDF)</button>
+      </div>
+
+      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials (Daftar Perangkat Jaringan Multi-Vendor)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>No</th><th>Perangkat</th><th>Vendor / Model</th><th>Kapasitas / Port</th><th>Jumlah</th><th>Penempatan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Router WAN HQ</td><td>Cisco 2811 + WIC-2T</td><td>2x FastEthernet, 2x Serial WAN</td><td>1 Unit</td><td>Ruang Server (Jakarta)</td></tr>
+          <tr><td>2</td><td>Router WAN Branch</td><td>Cisco 2811 + WIC-2T</td><td>2x FastEthernet, 2x Serial WAN</td><td>1 Unit</td><td>Ruang Finance (Bandung)</td></tr>
+          <tr><td>3</td><td>Switch Distribusi</td><td>Cisco Catalyst 2960 / Switch-PT</td><td>24-Port 10/100 FastEthernet</td><td>4 Unit</td><td>2x Jakarta, 2x Bandung</td></tr>
+          <tr><td>4</td><td>Cloud WAN Switch</td><td>Cloud-PT (Frame Relay)</td><td>Multi-port Serial (DLCI 101/201)</td><td>1 Unit</td><td>Backbone WAN ISP</td></tr>
+          <tr><td>5</td><td>Server Komputer</td><td>Dedicated Server-PT (Linux OS)</td><td>1x FastEthernet (DNS/Web/Mail)</td><td>1 Unit</td><td>Ruang Server Jakarta</td></tr>
+          <tr><td>6</td><td>Access Point Hotspot</td><td>Linksys / Cisco WAP-PT</td><td>802.11b/g 54 Mbps Access Point</td><td>2 Unit</td><td>Ruang Publik (JKT &amp; BDG)</td></tr>
+          <tr><td>7</td><td>Workstation &amp; Mobile</td><td>PC, Laptop (WPC300N), Smartphone</td><td>Windows OS, Browser, Mail Client</td><td>16 Unit</td><td>Area Kerja &amp; Publik</td></tr>
+        </tbody>
+      </table>
+
+      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">2. Rancangan Kebutuhan Perkabelan Jaringan (Cabling Plan)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Jenis Kabel</th><th>Standar / Konektor</th><th>Titik Sambung (Dari &rarr; Ke)</th><th>Perkiraan Panjang</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Serial WAN (DCE/DTE)</td><td>Smart Serial V.35 / DB60</td><td>Cloud0 (Serial0 &amp; Serial1) &rarr; Router0 &amp; Router1 (Se0/1/0)</td><td>2 Jalur WAN</td></tr>
+          <tr><td>UTP Straight-Through</td><td>TIA/EIA-568B &bull; RJ-45</td><td>Router (Fa0/0) &rarr; Switch (Fa0/1), Switch &rarr; PC / Server0 / AP</td><td>12 Jalur Drop Cable</td></tr>
+          <tr><td>UTP Cross-Over</td><td>TIA/EIA-568A ke 568B &bull; RJ-45</td><td>Switch_HQ_Server (Fa1/1) &rarr; Switch_HQ_ADM (Fa0/1)<br>Switch_BR_Finance (Fa1/1) &rarr; Switch_BR_ADM (Fa0/1)</td><td>2 Jalur Backbone Inter-Switch</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAGIAN 2: PAKET C -->
+    <div class="card">
+      <div class="card-title">
+        <span>BAGIAN 2: PERENCANAAN GEDUNG 4 LANTAI (PT. TEKNOLOGI WARUNGPEDIA)</span>
       </div>
 
       <p style="font-size:13px; margin-bottom:12px;">
         <strong>Data Survei:</strong> 1 Gedung 4 Lantai, 8 Ruangan (2 ruangan per lantai), 3 client per ruangan = total 24 client PC terhubung ke Web Proxy &amp; Mail Server.
       </p>
 
-      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials (Daftar Kebutuhan Perangkat Keras)</div>
+      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials Gedung 4 Lantai</div>
       <table class="data-table">
         <thead>
           <tr><th>No</th><th>Perangkat</th><th>Spesifikasi</th><th>Jumlah</th><th>Peruntukan</th></tr>
@@ -549,6 +752,27 @@ table.data-table tr:hover td { background: #f8fafc; }
       </table>
     </div>
 
+    <!-- BAGIAN 3: MASTER TABEL IP -->
+    <div class="card">
+      <div class="card-title">
+        <span>BAGIAN 3: MASTER DOKUMENTASI PENGALAMATAN IP (ADDRESSING PLAN)</span>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Paket / Lokasi</th><th>Subnet / VLAN</th><th>Network Address</th><th>Subnet Mask</th><th>IP Gateway</th><th>Alokasi Host / DHCP Range</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Paket B (WAN)</strong></td><td>WAN Frame Relay</td><td>10.10.10.0/24</td><td>255.255.255.0</td><td>-</td><td>HQ: 10.10.10.1 &bull; Branch: 10.10.10.2</td></tr>
+          <tr><td><strong>Paket B (Pusat)</strong></td><td>VLAN 10 (Server)</td><td>192.168.1.0/24</td><td>255.255.255.0</td><td>192.168.1.1</td><td>.1.2 - .1.99 (DHCP), .1.100 (Server0 Static)</td></tr>
+          <tr><td><strong>Paket B (Pusat)</strong></td><td>VLAN 20 (ADM/Publik)</td><td>192.168.2.0/24</td><td>255.255.255.0</td><td>192.168.2.1</td><td>.2.2 - .2.254 (DHCP)</td></tr>
+          <tr><td><strong>Paket B (Cabang)</strong></td><td>VLAN 10 (Finance)</td><td>192.168.10.0/24</td><td>255.255.255.0</td><td>192.168.10.1</td><td>.10.2 - .10.254 (DHCP)</td></tr>
+          <tr><td><strong>Paket B (Cabang)</strong></td><td>VLAN 20 (ADM/Publik)</td><td>192.168.20.0/24</td><td>255.255.255.0</td><td>192.168.20.1</td><td>.20.2 - .20.254 (DHCP)</td></tr>
+          <tr><td><strong>Paket C (LAN)</strong></td><td>Kabel ether2</td><td>192.168.50.0/25</td><td>255.255.255.128</td><td>192.168.50.1</td><td>192.168.50.2 - 192.168.50.100 (99 Client)</td></tr>
+          <tr><td><strong>Paket C (WLAN)</strong></td><td>Hotspot ether3</td><td>192.168.20.0/24</td><td>255.255.255.0</td><td>192.168.20.1</td><td>192.168.20.2 - 192.168.20.100 (99 Client)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="print-sign">
       <div class="sig-box">
         <div>Peserta Ujian,</div>
@@ -574,11 +798,11 @@ table.data-table tr:hover td { background: #f8fafc; }
 
     <div class="card">
       <div class="card-title">
-        <span>Ceklis Verifikasi Asesor &amp; Kalkulator Nilai</span>
+        <span>Ceklis Verifikasi Asesor &amp; Kalkulator Nilai (Total: 100 Poin)</span>
         <button class="btn btn-sm no-print" onclick="window.print()">Cetak Lembar Nilai</button>
       </div>
 
-      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">A. Verifikasi Paket B: Cisco Packet Tracer (50%)</div>
+      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">A. Verifikasi Paket B: Cisco Packet Tracer (Bobot: 50 Poin)</div>
       <table class="data-table">
         <thead>
           <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
@@ -591,19 +815,19 @@ table.data-table tr:hover td { background: #f8fafc; }
         </tbody>
       </table>
 
-      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">B. Verifikasi Paket C: Mikrotik &amp; Kabel LAN (50%)</div>
+      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">B. Verifikasi Paket C: Mikrotik &amp; Kabel LAN (Bobot: 50 Poin)</div>
       <table class="data-table">
         <thead>
           <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
         </thead>
         <tbody>
-          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Fisik 2 Kabel UTP Straight</td><td>Lampu 1-8 pada Cable Tester menyala hijau berurutan</td><td>10</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Fisik 2 Kabel UTP Straight</td><td>Lampu 1-8 pada Cable Tester menyala hijau berurutan</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>LAN DHCP Pool 99 Client</td><td>Client kabel menerima IP dari range 192.168.50.2-192.168.50.100</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Ping Router (Poin 8)</td><td>IP .2-.50 RTO ping router, sedangkan .51-.100 berhasil reply</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Ping Wireless (Poin 9)</td><td>IP .51-.100 RTO ping ke arah client wireless 192.168.20.0/24</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Logging Akses ke Disk (Poin 10)</td><td>Log akses router tercatat dan tersimpan di media disk</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Hotspot Mikhmon (Poin 14)</td><td>Login captive portal aktif, limit 5M/10m &amp; 2M/5m berfungsi</td><td>5</td></tr>
-          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Situs www.detik.com (Poin 16)</td><td>Akses web detik.com terblokir (Access Denied / Reset)</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Situs www.detik.com (Poin 16)</td><td>Akses web detik.com terblokir (Access Denied / TLS drop)</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir File .mp3 &amp; .mkv (Poin 17)</td><td>Download file .mp3 / .mkv digagalkan error 403 Forbidden</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Konten "games" (Poin 18)</td><td>URL dengan kata "games" langsung diblokir proxy/firewall</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Redirect lionair ke bnsp (Poin 19)</td><td>Akses lionair.co.id otomatis dialihkan ke bnsp.go.id</td><td>5</td></tr>
@@ -650,6 +874,8 @@ const defaultData = {
   iface_lan: 'ether2',
   iface_ap: 'ether3',
   wan_mode: 'dhcp',
+  wan_ip: '192.168.1.50/24',
+  wan_gw: '192.168.1.1',
   ros_ver: 'v7',
   poin19: 'redirect'
 };
@@ -666,6 +892,15 @@ function loadData() {
 
 function saveData(d) {
   localStorage.setItem('ukk_cheat_st', JSON.stringify(d));
+}
+
+function toggleWanMode() {
+  const mode = document.getElementById('in_wan_mode').value;
+  const isStatic = (mode === 'static');
+  document.getElementById('in_wan_ip').disabled = !isStatic;
+  document.getElementById('in_wan_gw').disabled = !isStatic;
+  document.getElementById('in_wan_ip').style.background = isStatic ? '#ffffff' : '#f1f5f9';
+  document.getElementById('in_wan_gw').style.background = isStatic ? '#ffffff' : '#f1f5f9';
 }
 
 function switchPane(id) {
@@ -755,7 +990,8 @@ function renderVouchers() {
 
 function calcScore() {
   const cbs = document.querySelectorAll('#pane-rubrik input[type="checkbox"]');
-  const weights = [10, 15, 10, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+  // 4 items Paket B (10, 15, 10, 15 = 50) + 10 items Paket C (5 * 10 = 50) = 100
+  const weights = [10, 15, 10, 15, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
   let tot = 0;
   cbs.forEach((cb, i) => { if (cb.checked) tot += weights[i] || 0; });
   
@@ -788,6 +1024,8 @@ function refreshAll() {
     iface_lan: document.getElementById('in_iface_lan').value || 'ether2',
     iface_ap: document.getElementById('in_iface_ap').value || 'ether3',
     wan_mode: document.getElementById('in_wan_mode').value,
+    wan_ip: document.getElementById('in_wan_ip').value || '192.168.1.50/24',
+    wan_gw: document.getElementById('in_wan_gw').value || '192.168.1.1',
     ros_ver: document.getElementById('in_ros_ver').value,
     poin19: document.getElementById('in_poin19').value
   };
@@ -929,6 +1167,8 @@ wr`;
 
 function renderMikrotik(st, slug, adminMail) {
   const isV7 = st.ros_ver === 'v7';
+  const isStatic = st.wan_mode === 'static';
+
   let rsc = `# ========================================================
 # MIKROTIK ROUTEROS SCRIPT - SOAL UKK PAKET C
 # Peserta: ${st.nama} (${st.kelas}) - NIS: ${st.nis}
@@ -938,9 +1178,16 @@ function renderMikrotik(st, slug, adminMail) {
 /system identity set name="UKK-${slug}"
 
 # 1. DNS ISP
-/ip dns set allow-remote-requests=yes cache-size=2048KiB
+`;
 
-# 2. NTP CLIENT & CLOCK
+  if (isStatic) {
+    rsc += `/ip dns set allow-remote-requests=yes servers=${st.wan_gw} cache-size=2048KiB\n`;
+  } else {
+    rsc += `/ip dns set allow-remote-requests=yes cache-size=2048KiB\n`;
+  }
+
+  rsc += `
+# 2. NTP CLIENT & CLOCK (TIMEZONE JAKARTA)
 /system clock set time-zone-name=Asia/Jakarta
 `;
   if (isV7) {
@@ -953,11 +1200,18 @@ function renderMikrotik(st, slug, adminMail) {
 # 3. WEB PROXY
 /ip proxy set enabled=yes port=8080 cache-administrator="${adminMail}" max-cache-size=none cache-on-disk=no
 
-# 4 & 5. WAN & NAT MASQUERADE
-/ip dhcp-client add interface=${st.iface_wan} disabled=no use-peer-dns=yes use-peer-ntp=yes add-default-route=yes comment="Poin 4-5"
-/ip firewall nat add chain=srcnat out-interface=${st.iface_wan} action=masquerade comment="NAT Internet"
+# 4 & 5. JARINGAN INTERNET (WAN) & NAT MASQUERADE
+`;
 
-# 6 & 7. JARINGAN LOKAL (LAN 192.168.50.1/25) POOL 99 CLIENT
+  if (isStatic) {
+    rsc += `/ip address add address=${st.wan_ip} interface=${st.iface_wan} comment="Poin 4: IP Internet Static"\n/ip route add gateway=${st.wan_gw} comment="Poin 5: Gateway ISP"\n`;
+  } else {
+    rsc += `/ip dhcp-client add interface=${st.iface_wan} disabled=no use-peer-dns=yes use-peer-ntp=yes add-default-route=yes comment="Poin 4-5"\n`;
+  }
+
+  rsc += `/ip firewall nat add chain=srcnat out-interface=${st.iface_wan} action=masquerade comment="NAT Internet"
+
+# 6 & 7. JARINGAN LOKAL (LAN 192.168.50.1/25) POOL 99 CLIENT (.2 s/d .100)
 /ip address add address=192.168.50.1/25 interface=${st.iface_lan} comment="Poin 6"
 /ip pool add name=dhcp-pool-lan ranges=192.168.50.2-192.168.50.100 comment="Poin 7"
 /ip dhcp-server add name=dhcp-lan interface=${st.iface_lan} address-pool=dhcp-pool-lan lease-time=8h disabled=no
@@ -991,14 +1245,15 @@ function renderMikrotik(st, slug, adminMail) {
 /ip firewall filter add chain=forward src-address=192.168.20.0/24 out-interface=${st.iface_wan} time=16h-1d,sun,mon,tue,wed,thu,fri,sat action=drop comment="Poin 15: Blokir Malam"
 /ip firewall filter add chain=forward src-address=192.168.20.0/24 out-interface=${st.iface_wan} time=0s-7h,sun,mon,tue,wed,thu,fri,sat action=drop comment="Poin 15: Blokir Pagi"
 
-# 16. BLOKIR HTTPS DETIK.COM
+# 16. BLOKIR HTTPS DETIK.COM & DROP QUIC/UDP443 AGAR FALLBACK KE TCP
+/ip firewall filter add chain=forward protocol=udp dst-port=443 src-address=192.168.20.0/24 action=drop comment="Poin 16: Drop QUIC WLAN"
+/ip firewall filter add chain=forward protocol=udp dst-port=443 src-address=192.168.50.0/25 action=drop comment="Poin 16: Drop QUIC LAN"
 /ip firewall filter add chain=forward protocol=tcp dst-port=443 tls-host="*detik.com*" action=drop comment="Poin 16: TLS Host detik.com"
-/ip firewall filter add chain=forward content="detik.com" action=drop comment="Poin 16: Content detik.com"
 
-# 18. BLOKIR KONTEN GAMES
-/ip firewall filter add chain=forward content="games" action=drop comment="Poin 18: Content games"
+# 18. BLOKIR KONTEN GAMES VIA TLS-HOST HTTPS
+/ip firewall filter add chain=forward protocol=tcp dst-port=443 tls-host="*games*" action=drop comment="Poin 18: TLS Host games"
 
-# TRANSPARENT PROXY REDIRECT
+# TRANSPARENT PROXY REDIRECT (PORT 80 HTTP KE 8080)
 /ip firewall nat add chain=dstnat protocol=tcp dst-port=80 in-interface=${st.iface_lan} action=redirect to-ports=8080 comment="Redirect LAN ke Proxy"
 /ip firewall nat add chain=dstnat protocol=tcp dst-port=80 in-interface=${st.iface_ap} action=redirect to-ports=8080 comment="Redirect WLAN ke Proxy"
 
@@ -1006,7 +1261,8 @@ function renderMikrotik(st, slug, adminMail) {
 /ip proxy access add dst-host="*detik.com*" action=deny comment="Poin 16: Blokir Situs"
 /ip proxy access add path="*.mp3*" action=deny comment="Poin 17: Blokir MP3"
 /ip proxy access add path="*.mkv*" action=deny comment="Poin 17: Blokir MKV"
-/ip proxy access add path="*games*" action=deny comment="Poin 18: Blokir Games"
+/ip proxy access add path="*games*" action=deny comment="Poin 18: Blokir Games (Proxy Path)"
+/ip proxy access add dst-host="*games*" action=deny comment="Poin 18: Blokir Games (Proxy Host)"
 `;
 
   if (st.poin19 === 'redirect') {
@@ -1034,9 +1290,12 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('in_iface_lan').value = d.iface_lan;
   document.getElementById('in_iface_ap').value = d.iface_ap;
   document.getElementById('in_wan_mode').value = d.wan_mode;
+  document.getElementById('in_wan_ip').value = d.wan_ip || '192.168.1.50/24';
+  document.getElementById('in_wan_gw').value = d.wan_gw || '192.168.1.1';
   document.getElementById('in_ros_ver').value = d.ros_ver;
   document.getElementById('in_poin19').value = d.poin19;
 
+  toggleWanMode();
   generateVouchers();
   refreshAll();
 });
