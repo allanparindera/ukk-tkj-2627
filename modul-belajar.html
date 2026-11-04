@@ -4,422 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Modul Praktikum & Panduan Langkah UKK TKJ 26/27</title>
-<style>
-:root {
-  --bg-page: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-winbox: #e2e8f0;
-  --border-light: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-subtle: #64748b;
-  --primary: #0284c7;
-  --primary-hover: #0369a1;
-  --primary-subtle: #e0f2fe;
-  --amber: #b45309;
-  --amber-subtle: #fef3c7;
-  --green: #15803d;
-  --green-subtle: #dcfce7;
-  --winbox-header: #334155;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg-page);
-  color: var(--text-main);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-header {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
-  padding: 14px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.brand-name {
-  font-weight: 700;
-  font-size: 15px;
-  color: #0f172a;
-}
-.brand-sub {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.header-links a {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--primary);
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: var(--primary-subtle);
-}
-.header-links a:hover { background: #bae6fd; }
-
-.page-layout {
-  display: flex;
-  max-width: 1360px;
-  margin: 0 auto;
-}
-
-/* Sidebar TOC */
-.sidebar {
-  width: 280px;
-  background: #ffffff;
-  border-right: 1px solid var(--border-light);
-  position: sticky;
-  top: 61px;
-  height: calc(100vh - 61px);
-  overflow-y: auto;
-  padding: 20px 14px;
-  flex-shrink: 0;
-}
-.mobile-toc-toggle { display: none; }
-.toc-category {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-subtle);
-  margin-top: 16px;
-  margin-bottom: 6px;
-  padding-left: 8px;
-}
-.toc-category:first-child { margin-top: 0; }
-.toc-link {
-  display: block;
-  padding: 6px 10px;
-  border-radius: 5px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.1s ease;
-}
-.toc-link:hover {
-  background: var(--bg-subtle);
-  color: var(--text-main);
-}
-
-.main-content {
-  flex: 1;
-  padding: 32px 40px;
-  max-width: 1040px;
-}
-
-.lesson-section {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  padding: 28px;
-  margin-bottom: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-
-.lesson-header {
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.lesson-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #0f172a;
-  letter-spacing: -0.4px;
-}
-.lesson-badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--bg-subtle);
-  color: var(--text-muted);
-  border: 1px solid var(--border-strong);
-}
-
-/* Callouts */
-.callout {
-  border-left: 4px solid var(--primary);
-  background: var(--primary-subtle);
-  padding: 12px 16px;
-  border-radius: 0 6px 6px 0;
-  margin: 16px 0;
-  font-size: 13px;
-  color: #0369a1;
-  line-height: 1.6;
-}
-.callout strong { color: #0c4a6e; }
-.callout-amber {
-  border-left-color: var(--amber);
-  background: var(--amber-subtle);
-  color: #92400e;
-}
-.callout-amber strong { color: #78350f; }
-
-/* Breadcrumb Navigation Flow */
-.breadcrumb-flow {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 12px 0;
-  padding: 8px 12px;
-  background: #f8fafc;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  font-size: 13px;
-}
-.bc-step {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-  color: #0f172a;
-}
-.bc-arrow { color: #94a3b8; font-weight: bold; }
-
-/* Visual WinBox Mockup Window */
-.winbox-window {
-  background: #f1f5f9;
-  border: 1px solid #94a3b8;
-  border-radius: 6px;
-  margin: 18px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  overflow: hidden;
-  max-width: 650px;
-}
-.wb-titlebar {
-  background: var(--winbox-header);
-  color: #ffffff;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.wb-tabs {
-  background: #e2e8f0;
-  border-bottom: 1px solid #cbd5e1;
-  display: flex;
-  padding: 4px 8px 0;
-  gap: 4px;
-}
-.wb-tab {
-  background: #cbd5e1;
-  border: 1px solid #94a3b8;
-  border-bottom: none;
-  border-radius: 4px 4px 0 0;
-  padding: 4px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #334155;
-  cursor: default;
-}
-.wb-tab.active {
-  background: #ffffff;
-  border-bottom: 1px solid #ffffff;
-  color: #0f172a;
-  margin-bottom: -1px;
-}
-.wb-body {
-  background: #ffffff;
-  padding: 16px;
-}
-.wb-row {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 12px;
-}
-.wb-label {
-  color: #334155;
-  font-weight: 500;
-}
-.wb-input {
-  background: #ffffff;
-  border: 1px solid #94a3b8;
-  border-radius: 3px;
-  padding: 4px 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: #0f172a;
-  font-weight: 600;
-}
-.wb-select {
-  background: #ffffff;
-  border: 1px solid #94a3b8;
-  border-radius: 3px;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: #0f172a;
-  font-weight: 600;
-}
-.wb-hint {
-  font-size: 11px;
-  color: var(--primary);
-  margin-top: 2px;
-  grid-column: 2;
-}
-
-/* Concept Box */
-.concept-box {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-left: 4px solid #64748b;
-  border-radius: 0 6px 6px 0;
-  padding: 14px 18px;
-  margin: 16px 0;
-  font-size: 13px;
-}
-.concept-title {
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 4px;
-}
-
-/* Cable Visual */
-.cable-block {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin: 18px 0;
-}
-.rj45-box {
-  background: #f8fafc;
-  border: 2px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 16px;
-  width: 320px;
-}
-.rj45-title {
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  color: #0f172a;
-  margin-bottom: 12px;
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: 6px;
-}
-.pin-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: 600;
-}
-.pin-idx { width: 20px; color: var(--text-subtle); font-family: var(--font-mono); }
-.wire-bar {
-  height: 16px;
-  flex: 1;
-  border-radius: 3px;
-  margin: 0 10px;
-  border: 1px solid rgba(0,0,0,0.15);
-}
-.pin-label { width: 120px; font-size: 11px; color: #334155; }
-
-.wire-wo { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #f97316 6px, #f97316 12px); }
-.wire-o  { background: #ea580c; }
-.wire-wg { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #22c55e 6px, #22c55e 12px); }
-.wire-b  { background: #2563eb; }
-.wire-wb { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #3b82f6 6px, #3b82f6 12px); }
-.wire-g  { background: #16a34a; }
-.wire-wbr{ background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #854d0e 6px, #854d0e 12px); }
-.wire-br { background: #713f12; }
-
-/* SVG Box */
-.svg-wrap {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  padding: 16px;
-  margin: 14px 0;
-  overflow-x: auto;
-}
-.svg-wrap svg {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-}
-
-/* Clean Data Table */
-table.guide-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  margin: 14px 0;
-}
-table.guide-table th {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  padding: 8px 12px;
-  font-weight: 600;
-  text-align: left;
-}
-table.guide-table td {
-  border: 1px solid var(--border-light);
-  padding: 8px 12px;
-  color: var(--text-muted);
-}
-table.guide-table tr:hover td { background: #f8fafc; }
-
-@media (max-width: 900px) {
-  .page-layout { flex-direction: column; }
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    border-right: none;
-    border-bottom: 1px solid var(--border-light);
-    padding: 10px;
-  }
-  .mobile-toc-toggle {
-    display: block;
-    padding: 8px 12px;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-strong);
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 13px;
-  }
-  .mobile-toc-details[open] .sidebar-links {
-    margin-top: 10px;
-  }
-  .sidebar-links { display: none; }
-  .mobile-toc-details[open] .sidebar-links { display: block; }
-  .main-content { padding: 16px; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div>
-    <div class="brand-name">MODUL PRAKTIKUM &amp; JOBSHEET UKK TKJ 26/27</div>
-    <div class="brand-sub">SMKS Kartika X-1 Jakarta &bull; Panduan Belajar Mandiri Berbasis GUI &amp; Konsep</div>
+    <div class="brand-name">Modul praktikum dan jobsheet UKK TKJ 26/27</div>
+    <div class="brand-sub">SMKS Kartika X-1 Jakarta, Panduan Belajar Mandiri Berbasis GUI &amp; Konsep</div>
   </div>
   <div class="header-links">
-    <a href="cheat-konfigurasi.html">&larr; Pindah ke Workbench Cepat (Guru/Asesor)</a>
+    <a href="cheat-konfigurasi.html">Buka Workbench Cepat (Guru/Asesor)</a>
   </div>
 </header>
 
@@ -470,7 +65,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
 
       <div class="cable-block">
         <div class="rj45-box">
-          <div class="rj45-title">URUTAN PIN KONEKTOR RJ-45 (T568B)</div>
+          <div class="rj45-title">Urutan pin konektor RJ-45 (T568B)</div>
           <div class="pin-item"><span class="pin-idx">1</span><div class="wire-bar wire-wo"></div><span class="pin-label">Putih - Oranye</span></div>
           <div class="pin-item"><span class="pin-idx">2</span><div class="wire-bar wire-o"></div><span class="pin-label">Oranye</span></div>
           <div class="pin-item"><span class="pin-idx">3</span><div class="wire-bar wire-wg"></div><span class="pin-label">Putih - Hijau</span></div>
@@ -481,9 +76,9 @@ table.guide-table tr:hover td { background: #f8fafc; }
           <div class="pin-item"><span class="pin-idx">8</span><div class="wire-bar wire-br"></div><span class="pin-label">Cokelat</span></div>
         </div>
 
-        <div style="flex:1; min-width:280px;">
-          <h4 style="font-size:14px; margin-bottom:8px;">Langkah Pengerjaan Praktik:</h4>
-          <ol style="margin-left: 20px; font-size:13px; line-height:1.8;">
+        <div class="cable-steps">
+          <h4>Langkah Pengerjaan Praktik:</h4>
+          <ol>
             <li>Kupas kulit luar kabel UTP sepanjang 2 cm.</li>
             <li>Uraikan 4 pasang pilinan kawat dan luruskan secara rapi.</li>
             <li>Susun kawat secara sejajar dari pin 1 s.d. 8 sesuai urutan T568B.</li>
@@ -515,8 +110,8 @@ table.guide-table tr:hover td { background: #f8fafc; }
         <strong>PENTING:</strong> Modul tidak dapat dipasang saat router dalam keadaan menyala! Matikan saklar daya sebelum memasang modul.
       </div>
 
-      <h4 style="font-size:14px; margin-bottom:8px;">Tahapan Pemasangan Fisik:</h4>
-      <ol style="margin-left:20px; font-size:13px; line-height:1.8;">
+      <h4>Tahapan Pemasangan Fisik:</h4>
+      <ol>
         <li>Pilih <strong>Router 2811</strong> pada toolbar Packet Tracer. Beri nama <code>Router-HQ</code> dan <code>Router-Branch</code>.</li>
         <li>Klik fisik Router &rarr; Masuk ke tab <strong>Physical</strong>.</li>
         <li>Pada panel belakang router di sebelah kanan: Klik <strong>saklar daya hijau</strong> untuk mematikan daya.</li>
@@ -561,52 +156,10 @@ table.guide-table tr:hover td { background: #f8fafc; }
       </div>
 
       <div class="svg-wrap">
-        <svg viewBox="0 0 900 240" width="900" height="240" xmlns="http://www.w3.org/2000/svg">
-          <rect x="20" y="20" width="380" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
-          <text x="35" y="42" font-size="12" font-weight="bold" fill="#0369a1">HEAD OFFICE (JAKARTA)</text>
-
-          <rect x="500" y="20" width="380" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
-          <text x="515" y="42" font-size="12" font-weight="bold" fill="#0369a1">BRANCH OFFICE (BANDUNG)</text>
-
-          <rect x="380" y="70" width="140" height="55" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
-          <text x="450" y="95" font-size="12" font-weight="bold" text-anchor="middle">Cloud0 (WAN)</text>
-          <text x="450" y="110" font-size="9" fill="#64748b" text-anchor="middle">Frame Relay DLCI 101/201</text>
-
-          <!-- Router 0 -->
-          <rect x="180" y="60" width="130" height="45" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
-          <text x="245" y="80" font-size="11" font-weight="bold" text-anchor="middle">Router0 (HQ)</text>
-          <text x="245" y="94" font-size="8" fill="#64748b" text-anchor="middle">10.10.10.1 (Se0/1/0)</text>
-
-          <!-- Router 1 -->
-          <rect x="590" y="60" width="130" height="45" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
-          <text x="655" y="80" font-size="11" font-weight="bold" text-anchor="middle">Router1 (Branch)</text>
-          <text x="655" y="94" font-size="8" fill="#64748b" text-anchor="middle">10.10.10.2 (Se0/1/0)</text>
-
-          <line x1="310" y1="82" x2="380" y2="95" stroke="#dc2626" stroke-width="2"/>
-          <line x1="520" y1="95" x2="590" y2="82" stroke="#dc2626" stroke-width="2"/>
-
-          <!-- Switches -->
-          <rect x="60" y="135" width="115" height="32" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="117" y="150" font-size="9" font-weight="bold" text-anchor="middle">SW-HQ-Server (V10)</text>
-
-          <rect x="220" y="135" width="115" height="32" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="277" y="150" font-size="9" font-weight="bold" text-anchor="middle">SW-HQ-ADM (V20)</text>
-
-          <rect x="570" y="135" width="115" height="32" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="627" y="150" font-size="9" font-weight="bold" text-anchor="middle">SW-BR-Finance (V10)</text>
-
-          <rect x="730" y="135" width="115" height="32" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="787" y="150" font-size="9" font-weight="bold" text-anchor="middle">SW-BR-ADM (V20)</text>
-
-          <line x1="210" y1="105" x2="130" y2="135" stroke="#0f172a" stroke-width="1.5"/>
-          <line x1="175" y1="151" x2="220" y2="151" stroke="#0f172a" stroke-width="1.5" stroke-dasharray="3"/>
-
-          <line x1="630" y1="105" x2="630" y2="135" stroke="#0f172a" stroke-width="1.5"/>
-          <line x1="685" y1="151" x2="730" y2="151" stroke="#0f172a" stroke-width="1.5" stroke-dasharray="3"/>
-        </svg>
+        <svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="10" y="10" width="410" height="380" rx="8" fill="#f6f7f9" stroke="#c3cbd6" stroke-dasharray="5 4"/><text x="24" y="32" font-size="13" font-weight="700" fill="#0b6ea8">Kantor pusat (Jakarta)</text><rect x="540" y="10" width="410" height="380" rx="8" fill="#f6f7f9" stroke="#c3cbd6" stroke-dasharray="5 4"/><text x="554" y="32" font-size="13" font-weight="700" fill="#0b6ea8">Kantor cabang (Bandung)</text><rect x="428.1" y="70" width="103.9" height="47" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="2"/><text x="480" y="93" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Cloud0</text><text x="480" y="111" font-size="12"  text-anchor="middle" fill="#66727f">Frame Relay</text><rect x="138.9" y="60" width="152.2" height="65" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="215" y="83" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Router0 (HQ)</text><text x="215" y="101" font-size="12"  text-anchor="middle" fill="#66727f">Se0/1/0 10.10.10.1</text><text x="215" y="119" font-size="12"  text-anchor="middle" fill="#66727f">Fa0/0 trunk</text><rect x="666.4" y="60" width="157.2" height="65" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="745" y="83" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Router1 (Branch)</text><text x="745" y="101" font-size="12"  text-anchor="middle" fill="#66727f">Se0/1/0 10.10.10.2</text><text x="745" y="119" font-size="12"  text-anchor="middle" fill="#66727f">Fa0/0 trunk</text><line x1="291.1" y1="90.0" x2="428.1" y2="90.0" stroke="#9b1c1c" stroke-width="2"/><line x1="532.0" y1="90.0" x2="666.4" y2="90.0" stroke="#9b1c1c" stroke-width="2"/><text x="359.6" y="80.0" font-size="12" font-weight="700" text-anchor="middle" fill="#9b1c1c">Serial</text><text x="599.2" y="80.0" font-size="12" font-weight="700" text-anchor="middle" fill="#9b1c1c">Serial</text><text x="432.1" y="150.0" font-size="12"  text-anchor="end" fill="#66727f">Se0 DLCI 101</text><text x="528.0" y="150.0" font-size="12"  text-anchor="start" fill="#66727f">Se1 DLCI 201</text><rect x="5.1" y="185" width="179.8" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="95" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-HQ-Server</text><text x="95" y="226" font-size="12"  text-anchor="middle" fill="#0b6ea8">VLAN 10 192.168.1.0/24</text><rect x="245.1" y="185" width="179.8" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="335" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-HQ-ADM</text><text x="335" y="226" font-size="12"  text-anchor="middle" fill="#8a4b08">VLAN 20 192.168.2.0/24</text><rect x="531.6" y="185" width="186.7" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="625" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-BR-Finance</text><text x="625" y="226" font-size="12"  text-anchor="middle" fill="#0b6ea8">VLAN 10 192.168.10.0/24</text><rect x="771.6" y="185" width="186.7" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="865" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-BR-ADM</text><text x="865" y="226" font-size="12"  text-anchor="middle" fill="#8a4b08">VLAN 20 192.168.20.0/24</text><line x1="215.0" y1="125.0" x2="95.0" y2="185.0" stroke="#131a24" stroke-width="2"/><text x="140.0" y="160.0" font-size="12"  text-anchor="middle" fill="#66727f">trunk</text><line x1="184.9" y1="215.0" x2="245.1" y2="215.0" stroke="#131a24" stroke-width="2" stroke-dasharray="5 4"/><text x="215.0" y="196.0" font-size="12"  text-anchor="middle" fill="#66727f">cross</text><line x1="745.0" y1="125.0" x2="625.0" y2="185.0" stroke="#131a24" stroke-width="2"/><text x="670.0" y="160.0" font-size="12"  text-anchor="middle" fill="#66727f">trunk</text><line x1="718.4" y1="215.0" x2="771.6" y2="215.0" stroke="#131a24" stroke-width="2" stroke-dasharray="5 4"/><text x="745.0" y="196.0" font-size="12"  text-anchor="middle" fill="#66727f">cross</text><rect x="5.1" y="310" width="109.7" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="60" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">Server0</text><text x="60" y="350" font-size="12"  text-anchor="middle" fill="#66727f">192.168.1.100</text><line x1="90.0" y1="232.0" x2="60.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="138.8" y="310" width="42.4" height="28" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="160" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC0</text><line x1="130.0" y1="232.0" x2="160.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="227.4" y="310" width="75.2" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="265" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC3 PC4</text><text x="265" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Printer2</text><line x1="310.0" y1="232.0" x2="265.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="351.2" y="310" width="47.6" height="46" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="1.5"/><text x="375" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#0b6ea8">AP0</text><text x="375" y="350" font-size="12"  text-anchor="middle" fill="#66727f">WLAN</text><line x1="340.0" y1="232.0" x2="375.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="542.7" y="310" width="94.5" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="590" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC Finance</text><text x="590" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Laptop2</text><line x1="630.0" y1="232.0" x2="590.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="660.2" y="310" width="79.6" height="28" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="700" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">Printer0</text><line x1="660.0" y1="232.0" x2="700.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="767.4" y="310" width="75.2" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="805" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC1 PC2</text><text x="805" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Printer1</text><line x1="840.0" y1="232.0" x2="805.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="881.2" y="310" width="47.6" height="46" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="1.5"/><text x="905" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#0b6ea8">AP1</text><text x="905" y="350" font-size="12"  text-anchor="middle" fill="#66727f">WLAN</text><line x1="870.0" y1="232.0" x2="905.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/></svg>
       </div>
 
-      <h4 style="font-size:14px; margin-bottom:8px;">Konfigurasi GUI Cloud-PT (Frame Relay):</h4>
+      <h4>Konfigurasi GUI Cloud-PT (Frame Relay):</h4>
       <div class="breadcrumb-flow">
         <span class="bc-step">Cloud0</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">Tab Config</span> <span class="bc-arrow">&rarr;</span>
@@ -627,7 +180,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
         Bandingkan konfigurasi Router-on-a-Stick antara Router Kantor Pusat (Jakarta) dan Router Kantor Cabang (Bandung) agar tidak tertukar subnet IP-nya:
       </p>
 
-      <table class="guide-table">
+      <div class="table-scroll"><table class="guide-table">
         <thead>
           <tr><th>Parameter</th><th>Router-HQ (Jakarta)</th><th>Router-Branch (Bandung)</th></tr>
         </thead>
@@ -663,7 +216,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
             <td><code>10.0.0.0</code>, <code>192.168.10.0</code>, <code>192.168.20.0</code></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </section>
 
     <!-- BAB 6: SWITCHES -->
@@ -677,7 +230,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
         Sesuai soal, nama VLAN: <strong>VLAN 10 = "A"</strong>, <strong>VLAN 20 = "B"</strong>.
       </p>
 
-      <table class="guide-table">
+      <div class="table-scroll"><table class="guide-table">
         <thead>
           <tr><th>Nama Switch</th><th>Port Mode Trunk</th><th>Port Mode Access (Client/Server)</th></tr>
         </thead>
@@ -712,7 +265,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
             </td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </section>
 
     <!-- BAB 7: SERVER0 -->
@@ -726,20 +279,20 @@ table.guide-table tr:hover td { background: #f8fafc; }
         Server0 menggunakan 1 kartu FastEthernet fisik pada IP statis <code>192.168.1.100</code>:
       </p>
 
-      <h4 style="font-size:14px; margin-bottom:8px;">1. Pengaturan DNS Server (Tab Services &rarr; DNS):</h4>
+      <h4>1. Pengaturan DNS Server (Tab Services &rarr; DNS):</h4>
       <div class="breadcrumb-flow">
         <span class="bc-step">DNS: ON</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">usklsp.com &rarr; A Record &rarr; 192.168.1.100</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">lspsmk.net &rarr; A Record &rarr; 192.168.1.100</span>
       </div>
 
-      <h4 style="font-size:14px; margin: 16px 0 8px;">2. Pengaturan Web Server (Tab Services &rarr; HTTP):</h4>
+      <h4>2. Pengaturan Web Server (Tab Services &rarr; HTTP):</h4>
       <div class="breadcrumb-flow">
         <span class="bc-step">HTTP &amp; HTTPS: ON</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">Edit index.html &rarr; Isi judul: Portal USK LSP - PT Digital Techno Indonesia</span>
       </div>
 
-      <h4 style="font-size:14px; margin: 16px 0 8px;">3. Pengaturan Mail Server (Tab Services &rarr; EMAIL):</h4>
+      <h4>3. Pengaturan Mail Server (Tab Services &rarr; EMAIL):</h4>
       <div class="breadcrumb-flow">
         <span class="bc-step">SMTP &amp; POP3: ON</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">Domain Name: lspsmk.net &rarr; Klik Set</span> <span class="bc-arrow">&rarr;</span>
@@ -763,12 +316,12 @@ table.guide-table tr:hover td { background: #f8fafc; }
 
       <div class="winbox-window">
         <div class="wb-titlebar"><span>NAT Rule &lt;new&gt; - IP Firewall NAT</span><span>[X]</span></div>
-        <div class="wb-tabs"><div class="wb-tab active">General</div><div class="wb-tab">Action</div></div>
+        <div class="wb-section">Tab <b>General</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Chain:</span><span class="wb-select">srcnat</span></div>
-          <div class="wb-row"><span class="wb-label">Out. Interface:</span><span class="wb-input">ether1</span><span class="wb-hint">&bull; Interface ke ISP</span></div>
+          <div class="wb-row"><span class="wb-label">Out. Interface:</span><span class="wb-input">ether1</span><span class="wb-hint">Interface ke ISP</span></div>
         </div>
-        <div class="wb-tabs"><div class="wb-tab">General</div><div class="wb-tab active">Action</div></div>
+        <div class="wb-section">Tab <b>Action</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Action:</span><span class="wb-select">masquerade</span></div>
         </div>
@@ -816,12 +369,12 @@ table.guide-table tr:hover td { background: #f8fafc; }
       <!-- MOCKUP LOGGING RULE -->
       <div class="winbox-window">
         <div class="wb-titlebar"><span>Firewall Rule [0] - Logging Akses (Poin 10)</span><span>[X]</span></div>
-        <div class="wb-tabs"><div class="wb-tab active">General</div><div class="wb-tab">Action</div></div>
+        <div class="wb-section">Tab <b>General</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Chain:</span><span class="wb-select">input</span></div>
           <div class="wb-row"><span class="wb-label">Connection State:</span><span class="wb-select">new</span></div>
         </div>
-        <div class="wb-tabs"><div class="wb-tab">General</div><div class="wb-tab active">Action</div></div>
+        <div class="wb-section">Tab <b>Action</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Action:</span><span class="wb-select">log</span></div>
           <div class="wb-row"><span class="wb-label">Log Prefix:</span><span class="wb-input">[ROUTER-ACCESS]</span></div>
@@ -831,13 +384,13 @@ table.guide-table tr:hover td { background: #f8fafc; }
       <!-- MOCKUP DROP PING ROUTER -->
       <div class="winbox-window">
         <div class="wb-titlebar"><span>Firewall Rule [1] - Drop Ping Router (Poin 8)</span><span>[X]</span></div>
-        <div class="wb-tabs"><div class="wb-tab active">General</div><div class="wb-tab">Action</div></div>
+        <div class="wb-section">Tab <b>General</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Chain:</span><span class="wb-select">input</span></div>
           <div class="wb-row"><span class="wb-label">Src. Address:</span><span class="wb-input">192.168.50.2-192.168.50.50</span></div>
           <div class="wb-row"><span class="wb-label">Protocol:</span><span class="wb-select">1 (icmp)</span></div>
         </div>
-        <div class="wb-tabs"><div class="wb-tab">General</div><div class="wb-tab active">Action</div></div>
+        <div class="wb-section">Tab <b>Action</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Action:</span><span class="wb-select">drop</span></div>
         </div>
@@ -858,14 +411,14 @@ table.guide-table tr:hover td { background: #f8fafc; }
           <div class="wb-row"><span class="wb-label">Qty (Jumlah):</span><span class="wb-input">5</span></div>
           <div class="wb-row"><span class="wb-label">User Mode:</span><span class="wb-select">Username = Password</span></div>
           <div class="wb-row"><span class="wb-label">Profile:</span><span class="wb-select">UKK-5M (Rate: 5M/5M)</span></div>
-          <div class="wb-row"><span class="wb-label">Time Limit:</span><span class="wb-input">10m</span><span class="wb-hint">&bull; Aktif 10 menit</span></div>
+          <div class="wb-row"><span class="wb-label">Time Limit:</span><span class="wb-input">10m</span><span class="wb-hint">Aktif 10 menit</span></div>
         </div>
       </div>
 
       <!-- MOCKUP EXTRA TIME FILTER -->
       <div class="winbox-window">
         <div class="wb-titlebar"><span>Firewall Rule - Tab Extra: Time Restriction (Poin 15)</span><span>[X]</span></div>
-        <div class="wb-tabs"><div class="wb-tab">General</div><div class="wb-tab active">Extra</div><div class="wb-tab">Action</div></div>
+        <div class="wb-section">Tab <b>Extra</b></div>
         <div class="wb-body">
           <div class="wb-row"><span class="wb-label">Time:</span><span class="wb-input">16:00:00 - 23:59:59</span></div>
           <div class="wb-row"><span class="wb-label">Days:</span><span class="wb-input">sun, mon, tue, wed, thu, fri, sat</span></div>
@@ -881,7 +434,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
         <span class="lesson-badge">Paket C - Poin 16 s/d 19</span>
       </div>
 
-      <table class="guide-table">
+      <div class="table-scroll"><table class="guide-table">
         <thead>
           <tr><th>Poin Soal</th><th>Parameter Input</th><th>Action</th><th>Keterangan</th></tr>
         </thead>
@@ -911,7 +464,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
             <td>Mengarahkan lionair ke situs resmi BNSP</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <div class="concept-box">
         <div class="concept-title">Penanganan Situs HTTPS &amp; Protokol QUIC:</div>
@@ -933,7 +486,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
         Berdasarkan studi kasus PT. Teknologi Warungpedia: 1 Gedung 4 lantai, 8 ruangan (2 ruangan per lantai), masing-masing ruangan berisi 3 client workstation = <strong>Total 24 Client PC</strong> terkoneksi ke Proxy dan Mail Server.
       </p>
 
-      <table class="guide-table">
+      <div class="table-scroll"><table class="guide-table">
         <thead>
           <tr><th>Lapisan OSI</th><th>Perangkat Terpasang</th><th>Karakteristik &amp; Analisis Performa</th></tr>
         </thead>
@@ -954,7 +507,7 @@ table.guide-table tr:hover td { background: #f8fafc; }
             <td>Menangani logical IP addressing, pemisahan broadcast domain antarlantai, routing antarsubnet (LAN, WLAN, WAN), NAT Masquerade, serta filtering paket pada Firewall Filter.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </section>
 
   </main>

@@ -4,312 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workbench Konfigurasi Cepat &amp; Generator Asesor UKK TKJ 26/27</title>
-<style>
-:root {
-  --bg-page: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-code: #0f172a;
-  --border-light: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-subtle: #64748b;
-  --primary: #0284c7;
-  --primary-hover: #0369a1;
-  --primary-subtle: #e0f2fe;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg-page);
-  color: var(--text-main);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-header {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
-  padding: 12px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.brand-block {
-  display: flex;
-  flex-direction: column;
-}
-.brand-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-}
-.brand-sub {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.top-actions {
-  display: flex;
-  gap: 8px;
-}
-
-nav.tab-strip {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  overflow-x: auto;
-  padding: 0 20px;
-}
-nav.tab-strip button {
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 12px 16px;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-nav.tab-strip button:hover { color: var(--text-main); }
-nav.tab-strip button.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-  background: var(--primary-subtle);
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px;
-}
-
-.pane { display: none; }
-.pane.active { display: block; }
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: 8px;
-}
-
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-
-@media (max-width: 768px) {
-  .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
-}
-
-.form-group { margin-bottom: 12px; }
-.form-group label {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--text-subtle);
-  margin-bottom: 4px;
-}
-.form-input, .form-select {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  font-size: 13px;
-  color: var(--text-main);
-  background: #ffffff;
-  outline: none;
-}
-.form-input:focus, .form-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
-}
-.input-preview {
-  background: var(--bg-subtle);
-  color: var(--primary);
-  font-family: var(--font-mono);
-  font-weight: 600;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  border: 1px solid var(--border-strong);
-  background: #ffffff;
-  color: var(--text-main);
-  transition: all 0.15s ease;
-}
-.btn:hover { background: var(--bg-subtle); }
-.btn-primary { background: var(--primary); color: #ffffff; border-color: var(--primary); }
-.btn-primary:hover { background: var(--primary-hover); }
-.btn-dark { background: #0f172a; color: #ffffff; border-color: #0f172a; }
-.btn-dark:hover { background: #1e293b; }
-.btn-sm { padding: 4px 10px; font-size: 11px; }
-
-.callout {
-  border-left: 4px solid var(--primary);
-  background: var(--primary-subtle);
-  padding: 10px 14px;
-  border-radius: 0 6px 6px 0;
-  margin-bottom: 14px;
-  font-size: 12px;
-  color: #0369a1;
-}
-
-/* Code Display Box */
-.code-container {
-  position: relative;
-  margin: 10px 0 16px;
-}
-.code-bar {
-  background: #090d16;
-  color: #94a3b8;
-  padding: 6px 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  border-radius: 6px 6px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-pre.code-block {
-  background: var(--bg-code);
-  color: #f1f5f9;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.5;
-  padding: 14px;
-  border-radius: 0 0 6px 6px;
-  overflow-x: auto;
-  margin: 0;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-/* SVG Topology Styles */
-.topo-svg-box {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  padding: 16px;
-  margin: 12px 0 16px;
-  overflow-x: auto;
-}
-.topo-svg-box svg {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-}
-
-/* Table */
-table.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  margin: 10px 0;
-}
-table.data-table th {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  padding: 8px 12px;
-  font-weight: 600;
-  text-align: left;
-}
-table.data-table td {
-  border: 1px solid var(--border-light);
-  padding: 8px 12px;
-  color: var(--text-muted);
-}
-table.data-table tr:hover td { background: #f8fafc; }
-
-/* Voucher Mini Cards */
-.voucher-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-.voucher-card {
-  background: #ffffff;
-  border: 2px dashed #94a3b8;
-  border-radius: 6px;
-  padding: 12px;
-  text-align: center;
-}
-.vc-title { font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; }
-.vc-user { font-family: var(--font-mono); font-size: 16px; font-weight: 800; color: #0f172a; margin: 4px 0; }
-.vc-pass { font-family: var(--font-mono); font-size: 12px; color: var(--primary); }
-.vc-meta { font-size: 10px; color: #64748b; margin-top: 4px; border-top: 1px solid #e2e8f0; padding-top: 4px; }
-
-/* Print Styles */
-@media print {
-  body { background: #ffffff !important; font-size: 10pt; }
-  header, nav.tab-strip, .no-print, .btn { display: none !important; }
-  main { max-width: 100%; padding: 0; }
-  .pane { display: none !important; }
-  .pane.printable { display: block !important; }
-  .card { border: 1px solid #000 !important; box-shadow: none !important; page-break-inside: avoid; margin-bottom: 15px; }
-  .print-head {
-    display: block !important;
-    text-align: center;
-    border-bottom: 2px solid #000;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-  }
-  .print-sign {
-    display: flex !important;
-    justify-content: space-between;
-    margin-top: 36px;
-    page-break-inside: avoid;
-  }
-  .sig-box { text-align: center; width: 200px; }
-  .sig-space { height: 60px; }
-}
-.print-head, .print-sign { display: none; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="brand-block">
-    <div class="brand-title">WORKBENCH KONFIGURASI CEPAT &amp; GENERATOR ASESOR</div>
-    <div class="brand-sub">SMKS Kartika X-1 Jakarta &bull; TA 2026/2027</div>
+    <div class="brand-title">Workbench konfigurasi cepat dan generator asesor</div>
+    <div class="brand-sub">SMKS Kartika X-1 Jakarta, TA 2026/2027</div>
   </div>
   <div class="top-actions no-print">
-    <a href="modul-belajar.html" class="btn btn-sm">&larr; Buka Modul Belajar</a>
+    <a href="modul-belajar.html" class="btn btn-sm">Buka Modul Belajar</a>
     <button class="btn btn-sm btn-primary" onclick="downloadRSC()">Unduh Script .rsc</button>
     <button class="btn btn-sm" onclick="window.print()">Cetak Halaman (PDF)</button>
   </div>
@@ -392,11 +97,11 @@ table.data-table tr:hover td { background: #f8fafc; }
         </div>
         <div class="form-group" id="grp_wan_ip">
           <label>IP WAN Statis &amp; CIDR</label>
-          <input type="text" id="in_wan_ip" class="form-input" value="192.168.1.50/24" oninput="refreshAll()" disabled style="background:#f1f5f9;">
+          <input type="text" id="in_wan_ip" class="form-input" value="192.168.1.50/24" oninput="refreshAll()" disabled>
         </div>
         <div class="form-group" id="grp_wan_gw">
           <label>Gateway &amp; DNS ISP</label>
-          <input type="text" id="in_wan_gw" class="form-input" value="192.168.1.1" oninput="refreshAll()" disabled style="background:#f1f5f9;">
+          <input type="text" id="in_wan_gw" class="form-input" value="192.168.1.1" oninput="refreshAll()" disabled>
         </div>
         <div class="form-group">
           <label>Sintaks RouterOS</label>
@@ -425,92 +130,7 @@ table.data-table tr:hover td { background: #f8fafc; }
         <span>Diagram Topologi WAN Cisco Packet Tracer (Paket B)</span>
       </div>
       <div class="topo-svg-box">
-        <svg viewBox="0 0 900 260" width="900" height="260" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background Zones -->
-          <rect x="20" y="20" width="380" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
-          <text x="35" y="42" font-size="12" font-weight="bold" fill="#0369a1">KANTOR PUSAT (JAKARTA)</text>
-          
-          <rect x="500" y="20" width="380" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4"/>
-          <text x="515" y="42" font-size="12" font-weight="bold" fill="#0369a1">KANTOR CABANG (BANDUNG)</text>
-
-          <!-- Cloud WAN Center -->
-          <rect x="380" y="80" width="140" height="60" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
-          <text x="450" y="105" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Cloud0</text>
-          <text x="450" y="122" font-size="10" text-anchor="middle" fill="#64748b">Frame Relay WAN</text>
-
-          <!-- Router 0 -->
-          <rect x="180" y="60" width="130" height="50" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
-          <text x="245" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Router0 (HQ)</text>
-          <text x="245" y="98" font-size="9" text-anchor="middle" fill="#64748b">Fa0/0 RoAS | Se0/1/0</text>
-
-          <!-- Router 1 -->
-          <rect x="590" y="60" width="130" height="50" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
-          <text x="655" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Router1 (Branch)</text>
-          <text x="655" y="98" font-size="9" text-anchor="middle" fill="#64748b">Fa0/0 RoAS | Se0/1/0</text>
-
-          <!-- Serial Lines -->
-          <path d="M 310 85 Q 345 75 380 95" fill="none" stroke="#dc2626" stroke-width="2"/>
-          <text x="345" y="75" font-size="9" fill="#dc2626" font-weight="bold">10.10.10.1 (DTE)</text>
-          <text x="365" y="110" font-size="8" fill="#64748b">Se0: 101 (DCE)</text>
-
-          <path d="M 520 95 Q 555 75 590 85" fill="none" stroke="#dc2626" stroke-width="2"/>
-          <text x="545" y="75" font-size="9" fill="#dc2626" font-weight="bold">10.10.10.2 (DTE)</text>
-          <text x="500" y="110" font-size="8" fill="#64748b">Se1: 201 (DCE)</text>
-
-          <!-- Switches HQ -->
-          <rect x="60" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="117" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-HQ-Server</text>
-          <text x="117" y="174" font-size="8" fill="#0284c7" text-anchor="middle">VLAN 10 (192.168.1.0/24)</text>
-
-          <rect x="220" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="277" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-HQ-ADM</text>
-          <text x="277" y="174" font-size="8" fill="#d97706" text-anchor="middle">VLAN 20 (192.168.2.0/24)</text>
-
-          <!-- Switches Branch -->
-          <rect x="570" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="627" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-BR-Finance</text>
-          <text x="627" y="174" font-size="8" fill="#0284c7" text-anchor="middle">VLAN 10 (192.168.10.0/24)</text>
-
-          <rect x="730" y="145" width="115" height="36" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="787" y="162" font-size="10" font-weight="bold" text-anchor="middle">SW-BR-ADM</text>
-          <text x="787" y="174" font-size="8" fill="#d97706" text-anchor="middle">VLAN 20 (192.168.20.0/24)</text>
-
-          <!-- Trunk Cables -->
-          <line x1="220" y1="110" x2="140" y2="145" stroke="#0f172a" stroke-width="2"/>
-          <text x="165" y="125" font-size="8" fill="#475569">Trunk</text>
-          <line x1="175" y1="163" x2="220" y2="163" stroke="#0f172a" stroke-width="2" stroke-dasharray="3"/>
-          <text x="195" y="158" font-size="8" fill="#475569">Cross</text>
-
-          <line x1="630" y1="110" x2="630" y2="145" stroke="#0f172a" stroke-width="2"/>
-          <text x="635" y="130" font-size="8" fill="#475569">Trunk</text>
-          <line x1="685" y1="163" x2="730" y2="163" stroke="#0f172a" stroke-width="2" stroke-dasharray="3"/>
-          <text x="700" y="158" font-size="8" fill="#475569">Cross</text>
-
-          <!-- Devices End -->
-          <rect x="40" y="200" width="85" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="82" y="215" font-size="8" text-anchor="middle">Server0 (.1.100)</text>
-
-          <rect x="135" y="200" width="60" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="165" y="215" font-size="8" text-anchor="middle">PC0 (Srv)</text>
-
-          <rect x="220" y="200" width="55" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="247" y="215" font-size="8" text-anchor="middle">PC / Print</text>
-
-          <rect x="285" y="200" width="55" height="24" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
-          <text x="312" y="215" font-size="8" text-anchor="middle">AP0 (WLAN)</text>
-
-          <rect x="560" y="200" width="65" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="592" y="215" font-size="8" text-anchor="middle">PC/Laptop</text>
-
-          <rect x="635" y="200" width="50" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="660" y="215" font-size="8" text-anchor="middle">Printer0</text>
-
-          <rect x="720" y="200" width="60" height="24" rx="3" fill="#e2e8f0" stroke="#94a3b8"/>
-          <text x="750" y="215" font-size="8" text-anchor="middle">PC1/PC2</text>
-
-          <rect x="790" y="200" width="60" height="24" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
-          <text x="820" y="215" font-size="8" text-anchor="middle">AP1 (WLAN)</text>
-        </svg>
+        <svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="10" y="10" width="410" height="380" rx="8" fill="#f6f7f9" stroke="#c3cbd6" stroke-dasharray="5 4"/><text x="24" y="32" font-size="13" font-weight="700" fill="#0b6ea8">Kantor pusat (Jakarta)</text><rect x="540" y="10" width="410" height="380" rx="8" fill="#f6f7f9" stroke="#c3cbd6" stroke-dasharray="5 4"/><text x="554" y="32" font-size="13" font-weight="700" fill="#0b6ea8">Kantor cabang (Bandung)</text><rect x="428.1" y="70" width="103.9" height="47" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="2"/><text x="480" y="93" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Cloud0</text><text x="480" y="111" font-size="12"  text-anchor="middle" fill="#66727f">Frame Relay</text><rect x="138.9" y="60" width="152.2" height="65" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="215" y="83" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Router0 (HQ)</text><text x="215" y="101" font-size="12"  text-anchor="middle" fill="#66727f">Se0/1/0 10.10.10.1</text><text x="215" y="119" font-size="12"  text-anchor="middle" fill="#66727f">Fa0/0 trunk</text><rect x="666.4" y="60" width="157.2" height="65" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="745" y="83" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Router1 (Branch)</text><text x="745" y="101" font-size="12"  text-anchor="middle" fill="#66727f">Se0/1/0 10.10.10.2</text><text x="745" y="119" font-size="12"  text-anchor="middle" fill="#66727f">Fa0/0 trunk</text><line x1="291.1" y1="90.0" x2="428.1" y2="90.0" stroke="#9b1c1c" stroke-width="2"/><line x1="532.0" y1="90.0" x2="666.4" y2="90.0" stroke="#9b1c1c" stroke-width="2"/><text x="359.6" y="80.0" font-size="12" font-weight="700" text-anchor="middle" fill="#9b1c1c">Serial</text><text x="599.2" y="80.0" font-size="12" font-weight="700" text-anchor="middle" fill="#9b1c1c">Serial</text><text x="432.1" y="150.0" font-size="12"  text-anchor="end" fill="#66727f">Se0 DLCI 101</text><text x="528.0" y="150.0" font-size="12"  text-anchor="start" fill="#66727f">Se1 DLCI 201</text><rect x="5.1" y="185" width="179.8" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="95" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-HQ-Server</text><text x="95" y="226" font-size="12"  text-anchor="middle" fill="#0b6ea8">VLAN 10 192.168.1.0/24</text><rect x="245.1" y="185" width="179.8" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="335" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-HQ-ADM</text><text x="335" y="226" font-size="12"  text-anchor="middle" fill="#8a4b08">VLAN 20 192.168.2.0/24</text><rect x="531.6" y="185" width="186.7" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="625" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-BR-Finance</text><text x="625" y="226" font-size="12"  text-anchor="middle" fill="#0b6ea8">VLAN 10 192.168.10.0/24</text><rect x="771.6" y="185" width="186.7" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="865" y="208" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">SW-BR-ADM</text><text x="865" y="226" font-size="12"  text-anchor="middle" fill="#8a4b08">VLAN 20 192.168.20.0/24</text><line x1="215.0" y1="125.0" x2="95.0" y2="185.0" stroke="#131a24" stroke-width="2"/><text x="140.0" y="160.0" font-size="12"  text-anchor="middle" fill="#66727f">trunk</text><line x1="184.9" y1="215.0" x2="245.1" y2="215.0" stroke="#131a24" stroke-width="2" stroke-dasharray="5 4"/><text x="215.0" y="196.0" font-size="12"  text-anchor="middle" fill="#66727f">cross</text><line x1="745.0" y1="125.0" x2="625.0" y2="185.0" stroke="#131a24" stroke-width="2"/><text x="670.0" y="160.0" font-size="12"  text-anchor="middle" fill="#66727f">trunk</text><line x1="718.4" y1="215.0" x2="771.6" y2="215.0" stroke="#131a24" stroke-width="2" stroke-dasharray="5 4"/><text x="745.0" y="196.0" font-size="12"  text-anchor="middle" fill="#66727f">cross</text><rect x="5.1" y="310" width="109.7" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="60" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">Server0</text><text x="60" y="350" font-size="12"  text-anchor="middle" fill="#66727f">192.168.1.100</text><line x1="90.0" y1="232.0" x2="60.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="138.8" y="310" width="42.4" height="28" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="160" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC0</text><line x1="130.0" y1="232.0" x2="160.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="227.4" y="310" width="75.2" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="265" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC3 PC4</text><text x="265" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Printer2</text><line x1="310.0" y1="232.0" x2="265.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="351.2" y="310" width="47.6" height="46" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="1.5"/><text x="375" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#0b6ea8">AP0</text><text x="375" y="350" font-size="12"  text-anchor="middle" fill="#66727f">WLAN</text><line x1="340.0" y1="232.0" x2="375.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="542.7" y="310" width="94.5" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="590" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC Finance</text><text x="590" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Laptop2</text><line x1="630.0" y1="232.0" x2="590.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="660.2" y="310" width="79.6" height="28" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="700" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">Printer0</text><line x1="660.0" y1="232.0" x2="700.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="767.4" y="310" width="75.2" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="805" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC1 PC2</text><text x="805" y="350" font-size="12"  text-anchor="middle" fill="#66727f">Printer1</text><line x1="840.0" y1="232.0" x2="805.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/><rect x="881.2" y="310" width="47.6" height="46" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="1.5"/><text x="905" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#0b6ea8">AP1</text><text x="905" y="350" font-size="12"  text-anchor="middle" fill="#66727f">WLAN</text><line x1="870.0" y1="232.0" x2="905.0" y2="310.0" stroke="#66727f" stroke-width="1.5"/></svg>
       </div>
     </div>
 
@@ -539,7 +159,7 @@ table.data-table tr:hover td { background: #f8fafc; }
     <div class="card">
       <div class="card-title">
         <span>Script 4 Unit Switch (VLAN 10/20 &amp; Port Access)</span>
-        <div style="display:flex; gap:6px;">
+        <div class="btn-row">
           <button class="btn btn-sm" onclick="copyBox('box_sw_hq_srv')">SW HQ Srv</button>
           <button class="btn btn-sm" onclick="copyBox('box_sw_hq_adm')">SW HQ Adm</button>
           <button class="btn btn-sm" onclick="copyBox('box_sw_br_fin')">SW BR Fin</button>
@@ -574,53 +194,14 @@ table.data-table tr:hover td { background: #f8fafc; }
         <span>Diagram Topologi Mikrotik &amp; Kabel LAN (Paket C)</span>
       </div>
       <div class="topo-svg-box">
-        <svg viewBox="0 0 800 200" width="800" height="200" xmlns="http://www.w3.org/2000/svg">
-          <!-- ISP Cloud -->
-          <rect x="40" y="70" width="110" height="50" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
-          <text x="95" y="93" font-size="11" font-weight="bold" text-anchor="middle">ISP Internet</text>
-          <text x="95" y="108" font-size="9" fill="#64748b" text-anchor="middle">Gateway / DHCP</text>
-
-          <!-- Router MikroTik -->
-          <rect x="230" y="55" width="160" height="80" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-          <text x="310" y="80" font-size="13" font-weight="bold" text-anchor="middle">MikroTik Router</text>
-          <text x="310" y="96" font-size="9" fill="#0284c7" text-anchor="middle">NAT &bull; Firewall &bull; Proxy &bull; Hotspot</text>
-          <text x="310" y="112" font-size="8" fill="#64748b" text-anchor="middle">ether1: WAN | ether2: LAN | ether3: AP</text>
-
-          <!-- Cable Lines -->
-          <line x1="150" y1="95" x2="230" y2="95" stroke="#0284c7" stroke-width="2"/>
-          <text x="180" y="88" font-size="9" fill="#0284c7" font-weight="bold">ether1</text>
-
-          <line x1="390" y1="80" x2="490" y2="50" stroke="#0f172a" stroke-width="2"/>
-          <text x="440" y="58" font-size="9" font-weight="bold">ether2 (LAN)</text>
-
-          <line x1="390" y1="110" x2="490" y2="140" stroke="#0f172a" stroke-width="2"/>
-          <text x="440" y="132" font-size="9" font-weight="bold">ether3 (WLAN)</text>
-
-          <!-- Switch & LAN PC -->
-          <rect x="490" y="30" width="110" height="40" rx="4" fill="#ffffff" stroke="#64748b"/>
-          <text x="545" y="48" font-size="10" font-weight="bold" text-anchor="middle">Switch LAN</text>
-          <text x="545" y="60" font-size="8" fill="#64748b" text-anchor="middle">192.168.50.1/25</text>
-
-          <line x1="600" y1="50" x2="660" y2="50" stroke="#0f172a" stroke-width="1.5"/>
-          <rect x="660" y="35" width="100" height="30" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
-          <text x="710" y="52" font-size="9" font-weight="bold" text-anchor="middle">PC Client (.2-.100)</text>
-
-          <!-- AP & Mobile Phone -->
-          <rect x="490" y="120" width="110" height="40" rx="4" fill="#e0f2fe" stroke="#0284c7"/>
-          <text x="545" y="138" font-size="10" font-weight="bold" text-anchor="middle">Access Point</text>
-          <text x="545" y="150" font-size="8" fill="#64748b" text-anchor="middle">192.168.20.1/24</text>
-
-          <path d="M 605 135 A 8 8 0 0 1 615 145 M 610 130 A 15 15 0 0 1 625 150" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-          <rect x="660" y="125" width="100" height="30" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
-          <text x="710" y="142" font-size="9" font-weight="bold" text-anchor="middle">Smartphone Hotspot</text>
-        </svg>
+        <svg viewBox="0 0 960 305" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="56.0" y="105" width="88.0" height="47" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="2"/><text x="100" y="128" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">ISP</text><text x="100" y="146" font-size="12"  text-anchor="middle" fill="#66727f">Internet</text><rect x="272.1" y="80" width="255.7" height="66" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="2"/><text x="400" y="104" font-size="14" font-weight="700" text-anchor="middle" fill="#131a24">MikroTik router</text><text x="400" y="122" font-size="12"  text-anchor="middle" fill="#0b6ea8">NAT, firewall, proxy, hotspot</text><text x="400" y="140" font-size="12"  text-anchor="middle" fill="#66727f">ether1 WAN, ether2 LAN, ether3 AP</text><line x1="144.0" y1="125.0" x2="272.1" y2="125.0" stroke="#0b6ea8" stroke-width="2"/><text x="208.1" y="116.0" font-size="12" font-weight="700" text-anchor="middle" fill="#0b6ea8">ether1</text><rect x="694.2" y="30" width="131.5" height="47" rx="6" fill="#ffffff" stroke="#3d4856" stroke-width="1.5"/><text x="760" y="53" font-size="13" font-weight="700" text-anchor="middle" fill="#131a24">Switch LAN</text><text x="760" y="71" font-size="12"  text-anchor="middle" fill="#66727f">192.168.50.1/25</text><rect x="680.5" y="125" width="159.1" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="760" y="147" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">PC client</text><text x="760" y="165" font-size="12"  text-anchor="middle" fill="#66727f">192.168.50.2 - .100</text><line x1="527.9" y1="105.0" x2="694.2" y2="62.0" stroke="#131a24" stroke-width="2"/><text x="560.0" y="70.0" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">ether2</text><line x1="760.0" y1="77.0" x2="760.0" y2="125.0" stroke="#66727f" stroke-width="1.5"/><rect x="694.2" y="190" width="131.5" height="47" rx="6" fill="#e6f2f9" stroke="#0b6ea8" stroke-width="1.5"/><text x="760" y="213" font-size="13" font-weight="700" text-anchor="middle" fill="#0b6ea8">Access point</text><text x="760" y="231" font-size="12"  text-anchor="middle" fill="#66727f">192.168.20.1/24</text><rect x="701.1" y="255" width="117.7" height="46" rx="6" fill="#eef1f5" stroke="#c3cbd6" stroke-width="1.5"/><text x="760" y="277" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">Smartphone</text><text x="760" y="295" font-size="12"  text-anchor="middle" fill="#66727f">login hotspot</text><line x1="527.9" y1="145.0" x2="694.2" y2="215.0" stroke="#131a24" stroke-width="2"/><text x="560.0" y="190.0" font-size="12" font-weight="700" text-anchor="middle" fill="#131a24">ether3</text><line x1="760.0" y1="237.0" x2="760.0" y2="255.0" stroke="#0b6ea8" stroke-width="1.5" stroke-dasharray="3 4"/></svg>
       </div>
     </div>
 
     <div class="card">
       <div class="card-title">
         <span>Full RouterOS Configuration Script (.rsc) - Poin 1 s/d 19</span>
-        <div style="display:flex; gap:8px;">
+        <div class="btn-row">
           <button class="btn btn-sm btn-primary" onclick="copyBox('box_mikrotik_rsc')">Salin Script</button>
           <button class="btn btn-sm btn-dark" onclick="downloadRSC()">Unduh File .rsc</button>
         </div>
@@ -640,17 +221,17 @@ table.data-table tr:hover td { background: #f8fafc; }
     <div class="card">
       <div class="card-title">
         <span>Poin 14: 10 Akun Hotspot Acak (5M/10m &amp; 2M/5m)</span>
-        <div style="display:flex; gap:8px;">
+        <div class="btn-row">
           <button class="btn btn-sm btn-primary" onclick="generateVouchers()">Acak Ulang Akun</button>
           <button class="btn btn-sm" onclick="copyBox('box_voucher_cli')">Salin CLI User</button>
         </div>
       </div>
-      <p style="font-size:13px; color:var(--text-muted);">
+      <p class="doc-p">
         10 kartu voucher di bawah dapat dibagikan kepada peserta atau asesor untuk pengujian captive portal langsung di smartphone.
       </p>
       <div class="voucher-grid" id="voucher_container"></div>
       
-      <div class="code-container" style="margin-top:20px;">
+      <div class="code-container">
         <div class="code-bar">Cadangan CLI RouterOS (Jika Mikhmon tidak aktif)</div>
         <pre id="box_voucher_cli" class="code-block"></pre>
       </div>
@@ -660,20 +241,20 @@ table.data-table tr:hover td { background: #f8fafc; }
   <!-- PANE 5: DOKUMEN -->
   <div id="pane-doc" class="pane printable">
     <div class="print-head">
-      <h2 style="font-size:14pt; margin:0;">LAPORAN PERENCANAAN DAN SPESIFIKASI JARINGAN</h2>
-      <p style="font-size:10pt; margin:2px 0;">UJIAN SERTIFIKASI KOMPETENSI (UKK) TA 2026/2027</p>
-      <p style="font-size:9pt; margin:0; color:#555;">SMKS KARTIKA X-1 JAKARTA &bull; TEKNIK KOMPUTER DAN JARINGAN</p>
+      <h2>LAPORAN PERENCANAAN DAN SPESIFIKASI JARINGAN</h2>
+      <p>UJIAN SERTIFIKASI KOMPETENSI (UKK) TA 2026/2027</p>
+      <p>SMKS Kartika X-1 Jakarta, TEKNIK KOMPUTER DAN JARINGAN</p>
     </div>
 
     <!-- BAGIAN 1: PAKET B -->
     <div class="card">
       <div class="card-title">
-        <span>BAGIAN 1: SPESIFIKASI &amp; PERENCANAAN WAN (PT. DIGITAL TECHNO INDONESIA)</span>
+        <span>Bagian 1. Spesifikasi dan perencanaan WAN (PT. Digital Techno Indonesia)</span>
         <button class="btn btn-sm no-print" onclick="window.print()">Cetak Halaman (PDF)</button>
       </div>
 
-      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials (Daftar Perangkat Jaringan Multi-Vendor)</div>
-      <table class="data-table">
+      <div class="doc-h">1. Bill of Materials (Daftar Perangkat Jaringan Multi-Vendor)</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th>No</th><th>Perangkat</th><th>Vendor / Model</th><th>Kapasitas / Port</th><th>Jumlah</th><th>Penempatan</th></tr>
         </thead>
@@ -686,10 +267,10 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td>6</td><td>Access Point Hotspot</td><td>Linksys / Cisco WAP-PT</td><td>802.11b/g 54 Mbps Access Point</td><td>2 Unit</td><td>Ruang Publik (JKT &amp; BDG)</td></tr>
           <tr><td>7</td><td>Workstation &amp; Mobile</td><td>PC, Laptop (WPC300N), Smartphone</td><td>Windows OS, Browser, Mail Client</td><td>16 Unit</td><td>Area Kerja &amp; Publik</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
-      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">2. Rancangan Kebutuhan Perkabelan Jaringan (Cabling Plan)</div>
-      <table class="data-table">
+      <div class="doc-h">2. Rancangan Kebutuhan Perkabelan Jaringan (Cabling Plan)</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th>Jenis Kabel</th><th>Standar / Konektor</th><th>Titik Sambung (Dari &rarr; Ke)</th><th>Perkiraan Panjang</th></tr>
         </thead>
@@ -698,21 +279,21 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td>UTP Straight-Through</td><td>TIA/EIA-568B &bull; RJ-45</td><td>Router (Fa0/0) &rarr; Switch (Fa0/1), Switch &rarr; PC / Server0 / AP</td><td>12 Jalur Drop Cable</td></tr>
           <tr><td>UTP Cross-Over</td><td>TIA/EIA-568A ke 568B &bull; RJ-45</td><td>Switch_HQ_Server (Fa1/1) &rarr; Switch_HQ_ADM (Fa0/1)<br>Switch_BR_Finance (Fa1/1) &rarr; Switch_BR_ADM (Fa0/1)</td><td>2 Jalur Backbone Inter-Switch</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <!-- BAGIAN 2: PAKET C -->
     <div class="card">
       <div class="card-title">
-        <span>BAGIAN 2: PERENCANAAN GEDUNG 4 LANTAI (PT. TEKNOLOGI WARUNGPEDIA)</span>
+        <span>Bagian 2. Perencanaan gedung 4 lantai (PT. Teknologi Warungpedia)</span>
       </div>
 
-      <p style="font-size:13px; margin-bottom:12px;">
+      <p class="doc-p">
         <strong>Data Survei:</strong> 1 Gedung 4 Lantai, 8 Ruangan (2 ruangan per lantai), 3 client per ruangan = total 24 client PC terhubung ke Web Proxy &amp; Mail Server.
       </p>
 
-      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials Gedung 4 Lantai</div>
-      <table class="data-table">
+      <div class="doc-h">1. Bill of Materials Gedung 4 Lantai</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th>No</th><th>Perangkat</th><th>Spesifikasi</th><th>Jumlah</th><th>Peruntukan</th></tr>
         </thead>
@@ -725,10 +306,10 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td>6</td><td>Access Point</td><td>Dual-Band 802.11ac Gigabit AP</td><td>2 Unit</td><td>Layanan Hotspot Tamu Ruang Publik &amp; Ruang Kerja</td></tr>
           <tr><td>7</td><td>Kabel &amp; RJ45</td><td>UTP Cat5e High Quality + RJ45</td><td>1 Roll + Box</td><td>Pengkabelan horizontal client &amp; vertical backbone</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
-      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">2. Analisis Kinerja Perangkat Berdasarkan Layer OSI</div>
-      <table class="data-table">
+      <div class="doc-h">2. Analisis Kinerja Perangkat Berdasarkan Layer OSI</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th>Lapisan OSI</th><th>Perangkat Terlibat</th><th>Karakteristik &amp; Analisis Kinerja</th></tr>
         </thead>
@@ -749,15 +330,15 @@ table.data-table tr:hover td { background: #f8fafc; }
             <td>Menangani pengalamatan IP, pemisahan broadcast domain, routing antarsubnet (LAN, WLAN, WAN), NAT Masquerade, serta filtering paket data pada Firewall Filter.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <!-- BAGIAN 3: MASTER TABEL IP -->
     <div class="card">
       <div class="card-title">
-        <span>BAGIAN 3: MASTER DOKUMENTASI PENGALAMATAN IP (ADDRESSING PLAN)</span>
+        <span>Bagian 3. Dokumentasi pengalamatan IP (addressing plan)</span>
       </div>
-      <table class="data-table">
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th>Paket / Lokasi</th><th>Subnet / VLAN</th><th>Network Address</th><th>Subnet Mask</th><th>IP Gateway</th><th>Alokasi Host / DHCP Range</th></tr>
         </thead>
@@ -770,20 +351,20 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td><strong>Paket C (LAN)</strong></td><td>Kabel ether2</td><td>192.168.50.0/25</td><td>255.255.255.128</td><td>192.168.50.1</td><td>192.168.50.2 - 192.168.50.100 (99 Client)</td></tr>
           <tr><td><strong>Paket C (WLAN)</strong></td><td>Hotspot ether3</td><td>192.168.20.0/24</td><td>255.255.255.0</td><td>192.168.20.1</td><td>192.168.20.2 - 192.168.20.100 (99 Client)</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <div class="print-sign">
       <div class="sig-box">
         <div>Peserta Ujian,</div>
         <div class="sig-space"></div>
-        <div style="font-weight:700; text-decoration:underline;" class="doc_name">Ahmad Dani</div>
+        <div class="sig-name doc_name">Ahmad Dani</div>
         <div>NIS: <span class="doc_nis">212210045</span></div>
       </div>
       <div class="sig-box">
         <div>Asesor Penguji,</div>
         <div class="sig-space"></div>
-        <div style="font-weight:700; text-decoration:underline;">( .................................................... )</div>
+        <div class="sig-name">( .................................................... )</div>
         <div>NIP / No. Reg. Asesor</div>
       </div>
     </div>
@@ -792,8 +373,8 @@ table.data-table tr:hover td { background: #f8fafc; }
   <!-- PANE 6: RUBRIK -->
   <div id="pane-rubrik" class="pane printable">
     <div class="print-head">
-      <h2 style="font-size:14pt; margin:0;">LEMBAR PENILAIAN UJI KOMPETENSI KEAHLIAN (UKK)</h2>
-      <p style="font-size:10pt; margin:2px 0;">REKAPITULASI PENGUJIAN SISTEM &bull; TA 2026/2027</p>
+      <h2>LEMBAR PENILAIAN UJI KOMPETENSI KEAHLIAN (UKK)</h2>
+      <p>REKAPITULASI PENGUJIAN SISTEM &bull; TA 2026/2027</p>
     </div>
 
     <div class="card">
@@ -802,8 +383,8 @@ table.data-table tr:hover td { background: #f8fafc; }
         <button class="btn btn-sm no-print" onclick="window.print()">Cetak Lembar Nilai</button>
       </div>
 
-      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">A. Verifikasi Paket B: Cisco Packet Tracer (Bobot: 50 Poin)</div>
-      <table class="data-table">
+      <div class="doc-h">A. Verifikasi Paket B: Cisco Packet Tracer (Bobot: 50 Poin)</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
         </thead>
@@ -813,10 +394,10 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>DHCP Server RoAS</td><td>Client menerima IP otomatis &amp; DNS 192.168.1.100</td><td>10</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>DNS, Web &amp; Mail Server</td><td>Browser membuka usklsp.com &amp; email terkirim antaruser</td><td>15</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
-      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">B. Verifikasi Paket C: Mikrotik &amp; Kabel LAN (Bobot: 50 Poin)</div>
-      <table class="data-table">
+      <div class="doc-h">B. Verifikasi Paket C: Mikrotik &amp; Kabel LAN (Bobot: 50 Poin)</div>
+      <div class="table-scroll"><table class="data-table">
         <thead>
           <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
         </thead>
@@ -832,16 +413,16 @@ table.data-table tr:hover td { background: #f8fafc; }
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Konten "games" (Poin 18)</td><td>URL dengan kata "games" langsung diblokir proxy/firewall</td><td>5</td></tr>
           <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Redirect lionair ke bnsp (Poin 19)</td><td>Akses lionair.co.id otomatis dialihkan ke bnsp.go.id</td><td>5</td></tr>
         </tbody>
-      </table>
+      </table></div>
 
-      <div style="background:var(--bg-subtle); border:1px solid var(--border-strong); border-radius:6px; padding:12px 18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+      <div class="score-bar">
         <div>
-          <span style="font-weight:600; color:var(--text-muted);">TOTAL PEROLEHAN SKOR:</span>
-          <span id="final_score" style="font-size:20px; font-weight:800; color:var(--primary); margin-left:8px;">0 / 100</span>
+          <span class="score-label">TOTAL PEROLEHAN SKOR:</span>
+          <span id="final_score">0 / 100</span>
         </div>
         <div>
-          <span style="font-weight:600; color:var(--text-muted);">PREDIKAT:</span>
-          <span id="final_grade" style="font-size:13px; font-weight:700; margin-left:8px; padding:4px 10px; border-radius:4px; background:#e2e8f0; color:#334155;">BELUM LENGKAP</span>
+          <span class="score-label">PREDIKAT:</span>
+          <span id="final_grade">BELUM LENGKAP</span>
         </div>
       </div>
     </div>
@@ -850,13 +431,13 @@ table.data-table tr:hover td { background: #f8fafc; }
       <div class="sig-box">
         <div>Peserta Ujian,</div>
         <div class="sig-space"></div>
-        <div style="font-weight:700; text-decoration:underline;" class="doc_name">Ahmad Dani</div>
+        <div class="sig-name doc_name">Ahmad Dani</div>
         <div>NIS: <span class="doc_nis">212210045</span></div>
       </div>
       <div class="sig-box">
         <div>Asesor Penguji,</div>
         <div class="sig-space"></div>
-        <div style="font-weight:700; text-decoration:underline;">( .................................................... )</div>
+        <div class="sig-name">( .................................................... )</div>
         <div>Tanda Tangan &amp; Tanggal</div>
       </div>
     </div>
@@ -899,8 +480,6 @@ function toggleWanMode() {
   const isStatic = (mode === 'static');
   document.getElementById('in_wan_ip').disabled = !isStatic;
   document.getElementById('in_wan_gw').disabled = !isStatic;
-  document.getElementById('in_wan_ip').style.background = isStatic ? '#ffffff' : '#f1f5f9';
-  document.getElementById('in_wan_gw').style.background = isStatic ? '#ffffff' : '#f1f5f9';
 }
 
 function switchPane(id) {
@@ -920,12 +499,19 @@ function makeSlug(n) {
   return n.trim().toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_').slice(0, 14);
 }
 
+function toast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.className = 'show';
+  clearTimeout(t._h); t._h = setTimeout(() => { t.className = ''; }, 1800);
+}
+
 function copyBox(id) {
   const el = document.getElementById(id);
   if (!el) return;
   const t = el.innerText || el.textContent;
   navigator.clipboard.writeText(t).then(() => {
-    alert('Konfigurasi berhasil disalin ke clipboard!');
+    toast('Tersalin ke clipboard');
   }).catch(() => {
     const ta = document.createElement('textarea');
     ta.value = t;
@@ -933,7 +519,7 @@ function copyBox(id) {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    alert('Konfigurasi berhasil disalin ke clipboard!');
+    toast('Tersalin ke clipboard');
   });
 }
 
@@ -1001,16 +587,16 @@ function calcScore() {
 
   if (tot >= 90) {
     grEl.textContent = 'KOMPETEN SANGAT MEMUASKAN (A)';
-    grEl.style.background = '#dcfce7'; grEl.style.color = '#15803d';
+    grEl.className = 'grade-a';
   } else if (tot >= 75) {
     grEl.textContent = 'KOMPETEN (B)';
-    grEl.style.background = '#e0f2fe'; grEl.style.color = '#0369a1';
+    grEl.className = 'grade-b';
   } else if (tot >= 60) {
     grEl.textContent = 'CUKUP KOMPETEN (C)';
-    grEl.style.background = '#fef3c7'; grEl.style.color = '#92400e';
+    grEl.className = 'grade-c';
   } else {
     grEl.textContent = 'BELUM KOMPETEN';
-    grEl.style.background = '#fee2e2'; grEl.style.color = '#991b1b';
+    grEl.className = 'grade-d';
   }
 }
 
