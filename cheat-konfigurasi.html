@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workbench Konfigurasi Cepat &amp; Generator Asesor UKK TKJ 26/27</title>
+<style>
+:root {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-code: #0f172a;
+  --border-light: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --primary-subtle: #e0f2fe;
+  --green: #15803d;
+  --amber: #b45309;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand-block {
+  display: flex;
+  flex-direction: column;
+}
+.brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.brand-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.top-actions {
+  display: flex;
+  gap: 8px;
+}
+
+nav.tab-strip {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  overflow-x: auto;
+  padding: 0 20px;
+}
+nav.tab-strip button {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 16px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+nav.tab-strip button:hover { color: var(--text-main); }
+nav.tab-strip button.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: var(--primary-subtle);
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.pane { display: none; }
+.pane.active { display: block; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+@media (max-width: 768px) {
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+.form-group { margin-bottom: 12px; }
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-subtle);
+  margin-bottom: 4px;
+}
+.form-input, .form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-main);
+  background: #ffffff;
+  outline: none;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+.input-preview {
+  background: var(--bg-subtle);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  background: #ffffff;
+  color: var(--text-main);
+  transition: all 0.15s ease;
+}
+.btn:hover { background: var(--bg-subtle); }
+.btn-primary { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-dark { background: #0f172a; color: #ffffff; border-color: #0f172a; }
+.btn-dark:hover { background: #1e293b; }
+.btn-sm { padding: 4px 10px; font-size: 11px; }
+
+.callout {
+  border-left: 4px solid var(--primary);
+  background: var(--primary-subtle);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: #0369a1;
+}
+
+/* Code Display Box */
+.code-container {
+  position: relative;
+  margin: 10px 0 16px;
+}
+.code-bar {
+  background: #090d16;
+  color: #94a3b8;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+pre.code-block {
+  background: var(--bg-code);
+  color: #f1f5f9;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 14px;
+  border-radius: 0 0 6px 6px;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Table */
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 10px 0;
+}
+table.data-table th {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 8px 12px;
+  font-weight: 600;
+  text-align: left;
+}
+table.data-table td {
+  border: 1px solid var(--border-light);
+  padding: 8px 12px;
+  color: var(--text-muted);
+}
+table.data-table tr:hover td { background: #f8fafc; }
+
+/* Voucher Mini Cards */
+.voucher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.voucher-card {
+  background: #ffffff;
+  border: 2px dashed #94a3b8;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+.vc-title { font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; }
+.vc-user { font-family: var(--font-mono); font-size: 16px; font-weight: 800; color: #0f172a; margin: 4px 0; }
+.vc-pass { font-family: var(--font-mono); font-size: 12px; color: var(--primary); }
+.vc-meta { font-size: 10px; color: #64748b; margin-top: 4px; border-top: 1px solid #e2e8f0; padding-top: 4px; }
+
+/* Print Styles */
+@media print {
+  body { background: #ffffff !important; font-size: 10pt; }
+  header, nav.tab-strip, .no-print, .btn { display: none !important; }
+  main { max-width: 100%; padding: 0; }
+  .pane { display: none !important; }
+  .pane.printable { display: block !important; }
+  .card { border: 1px solid #000 !important; box-shadow: none !important; page-break-inside: avoid; margin-bottom: 15px; }
+  .print-head {
+    display: block !important;
+    text-align: center;
+    border-bottom: 2px solid #000;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  .print-sign {
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 36px;
+    page-break-inside: avoid;
+  }
+  .sig-box { text-align: center; width: 200px; }
+  .sig-space { height: 60px; }
+}
+.print-head, .print-sign { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-block">
+    <div class="brand-title">WORKBENCH KONFIGURASI CEPAT &amp; GENERATOR ASESOR</div>
+    <div class="brand-sub">SMKS Kartika X-1 Jakarta &bull; TA 2026/2027</div>
+  </div>
+  <div class="top-actions no-print">
+    <a href="modul-belajar.html" class="btn btn-sm">&larr; Buka Modul Belajar</a>
+    <button class="btn btn-sm btn-primary" onclick="downloadRSC()">Unduh Script .rsc</button>
+    <button class="btn btn-sm" onclick="window.print()">Cetak Halaman (PDF)</button>
+  </div>
+</header>
+
+<nav class="tab-strip no-print">
+  <button class="tab-btn active" onclick="switchPane('pane-params')">1. Parameter Peserta</button>
+  <button class="tab-btn" onclick="switchPane('pane-cisco')">2. Fast Deploy: Cisco PT</button>
+  <button class="tab-btn" onclick="switchPane('pane-mikrotik')">3. Fast Deploy: Mikrotik .rsc</button>
+  <button class="tab-btn" onclick="switchPane('pane-vouchers')">4. Generator Voucher Hotspot</button>
+  <button class="tab-btn" onclick="switchPane('pane-doc')">5. Dokumen Perencanaan</button>
+  <button class="tab-btn" onclick="switchPane('pane-rubrik')">6. Lembar Nilai Asesor</button>
+</nav>
+
+<main>
+
+  <!-- PANE 1: PARAMS -->
+  <div id="pane-params" class="pane active">
+    <div class="card">
+      <div class="card-title">Identitas Peserta &amp; Generator Variabel</div>
+      <div class="callout">
+        Isi parameter nama dan NIS siswa. Seluruh konfigurasi Cisco, RouterOS, SSID Hotspot, dan email Web Proxy otomatis tersinkronisasi.
+      </div>
+      <div class="grid-3">
+        <div class="form-group">
+          <label>Nama Siswa</label>
+          <input type="text" id="in_nama" class="form-input" value="Ahmad Dani" oninput="refreshAll()">
+        </div>
+        <div class="form-group">
+          <label>NIS / No. Peserta</label>
+          <input type="text" id="in_nis" class="form-input" value="212210045" oninput="refreshAll()">
+        </div>
+        <div class="form-group">
+          <label>Kelas</label>
+          <select id="in_kelas" class="form-select" onchange="refreshAll()">
+            <option value="XII TKJ 2" selected>XII TKJ 2 (Pak Allan)</option>
+            <option value="XII TKJ 1">XII TKJ 1</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="form-group">
+          <label>Domain Sekolah</label>
+          <input type="text" id="in_domain" class="form-input" value="smkskartikax1.sch.id" oninput="refreshAll()">
+        </div>
+        <div class="form-group">
+          <label>SSID Terbentuk</label>
+          <input type="text" id="out_ssid" class="form-input input-preview" readonly>
+        </div>
+        <div class="form-group">
+          <label>Cache Administrator</label>
+          <input type="text" id="out_admin" class="form-input input-preview" readonly>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Parameter Interface &amp; RouterOS Mikrotik</div>
+      <div class="grid-3">
+        <div class="form-group">
+          <label>Interface WAN (ISP)</label>
+          <input type="text" id="in_iface_wan" class="form-input" value="ether1" oninput="refreshAll()">
+        </div>
+        <div class="form-group">
+          <label>Interface LAN (PC Kabel)</label>
+          <input type="text" id="in_iface_lan" class="form-input" value="ether2" oninput="refreshAll()">
+        </div>
+        <div class="form-group">
+          <label>Interface AP (Ke Access Point)</label>
+          <input type="text" id="in_iface_ap" class="form-input" value="ether3" oninput="refreshAll()">
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="form-group">
+          <label>Metode WAN</label>
+          <select id="in_wan_mode" class="form-select" onchange="refreshAll()">
+            <option value="dhcp" selected>DHCP Client (Otomatis)</option>
+            <option value="static">IP Statis (192.168.1.50/24)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Sintaks RouterOS</label>
+          <select id="in_ros_ver" class="form-select" onchange="refreshAll()">
+            <option value="v7" selected>RouterOS v7 (Rekomendasi Terkini)</option>
+            <option value="v6">RouterOS v6 (Legacy NTP)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Interpretasi Poin 19</label>
+          <select id="in_poin19" class="form-select" onchange="refreshAll()">
+            <option value="redirect" selected>Web Proxy Redirect (lionair -&gt; bnsp)</option>
+            <option value="walled">Walled Garden Hotspot</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 2: CISCO -->
+  <div id="pane-cisco" class="pane">
+    <div class="card">
+      <div class="card-title">
+        <span>Router0: Head Office (Jakarta)</span>
+        <button class="btn btn-sm btn-primary" onclick="copyBox('box_r_hq')">Salin CLI HQ</button>
+      </div>
+      <div class="code-container">
+        <div class="code-bar">Cisco 2811 &bull; Router-HQ (CLI)</div>
+        <pre id="box_r_hq" class="code-block"></pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Router1: Branch Office (Bandung)</span>
+        <button class="btn btn-sm btn-primary" onclick="copyBox('box_r_br')">Salin CLI Branch</button>
+      </div>
+      <div class="code-container">
+        <div class="code-bar">Cisco 2811 &bull; Router-Branch (CLI)</div>
+        <pre id="box_r_br" class="code-block"></pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Script 4 Unit Switch (VLAN 10/20 &amp; Port Access)</span>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-sm" onclick="copyBox('box_sw_hq_srv')">SW HQ Srv</button>
+          <button class="btn btn-sm" onclick="copyBox('box_sw_hq_adm')">SW HQ Adm</button>
+          <button class="btn btn-sm" onclick="copyBox('box_sw_br_fin')">SW BR Fin</button>
+          <button class="btn btn-sm" onclick="copyBox('box_sw_br_adm')">SW BR Adm</button>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="code-container">
+          <div class="code-bar">1. SW-HQ-Server (VLAN 10)</div>
+          <pre id="box_sw_hq_srv" class="code-block"></pre>
+        </div>
+        <div class="code-container">
+          <div class="code-bar">2. SW-HQ-ADM (VLAN 20)</div>
+          <pre id="box_sw_hq_adm" class="code-block"></pre>
+        </div>
+        <div class="code-container">
+          <div class="code-bar">3. SW-BR-Finance (VLAN 10)</div>
+          <pre id="box_sw_br_fin" class="code-block"></pre>
+        </div>
+        <div class="code-container">
+          <div class="code-bar">4. SW-BR-ADM (VLAN 20)</div>
+          <pre id="box_sw_br_adm" class="code-block"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 3: MIKROTIK -->
+  <div id="pane-mikrotik" class="pane">
+    <div class="card">
+      <div class="card-title">
+        <span>Full RouterOS Configuration Script (.rsc) - Poin 1 s/d 19</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-sm btn-primary" onclick="copyBox('box_mikrotik_rsc')">Salin Script</button>
+          <button class="btn btn-sm btn-dark" onclick="downloadRSC()">Unduh File .rsc</button>
+        </div>
+      </div>
+      <div class="callout">
+        Script di bawah ini siap langsung di-paste ke <strong>New Terminal</strong> WinBox atau diupload ke menu <strong>Files</strong> lalu jalankan <code>/import file-name=UKK.rsc</code>.
+      </div>
+      <div class="code-container">
+        <div class="code-bar">RouterOS <span id="lbl_ros">v7</span> &bull; 19 Poin UKK Soal Paket C</div>
+        <pre id="box_mikrotik_rsc" class="code-block"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 4: VOUCHERS -->
+  <div id="pane-vouchers" class="pane">
+    <div class="card">
+      <div class="card-title">
+        <span>Poin 14: 10 Akun Hotspot Acak (5M/10m &amp; 2M/5m)</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-sm btn-primary" onclick="generateVouchers()">Acak Ulang Akun</button>
+          <button class="btn btn-sm" onclick="copyBox('box_voucher_cli')">Salin CLI User</button>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--text-muted);">
+        10 kartu voucher di bawah dapat dibagikan kepada peserta atau asesor untuk pengujian captive portal langsung di smartphone.
+      </p>
+      <div class="voucher-grid" id="voucher_container"></div>
+      
+      <div class="code-container" style="margin-top:20px;">
+        <div class="code-bar">Cadangan CLI RouterOS (Jika Mikhmon tidak aktif)</div>
+        <pre id="box_voucher_cli" class="code-block"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 5: DOKUMEN -->
+  <div id="pane-doc" class="pane printable">
+    <div class="print-head">
+      <h2 style="font-size:14pt; margin:0;">LAPORAN PERENCANAAN DAN SPESIFIKASI JARINGAN</h2>
+      <p style="font-size:10pt; margin:2px 0;">UJIAN SERTIFIKASI KOMPETENSI (UKK) TA 2026/2027</p>
+      <p style="font-size:9pt; margin:0; color:#555;">SMKS KARTIKA X-1 JAKARTA &bull; TEKNIK KOMPUTER DAN JARINGAN</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Dokumen Perencanaan Kantor PT. Teknologi Warungpedia (Gedung 4 Lantai)</span>
+        <button class="btn btn-sm no-print" onclick="window.print()">Cetak Halaman (PDF)</button>
+      </div>
+
+      <p style="font-size:13px; margin-bottom:12px;">
+        <strong>Data Survei:</strong> 1 Gedung 4 Lantai, 8 Ruangan (2 ruangan per lantai), 3 client per ruangan = total 24 client PC terhubung ke Web Proxy &amp; Mail Server.
+      </p>
+
+      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">1. Bill of Materials (Daftar Kebutuhan Perangkat Keras)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>No</th><th>Perangkat</th><th>Spesifikasi</th><th>Jumlah</th><th>Peruntukan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Router Gateway</td><td>MikroTik RB750Gr3 / hAP ac2</td><td>1 Unit</td><td>Gateway Internet, NAT, Firewall, Hotspot, Web Proxy</td></tr>
+          <tr><td>2</td><td>Switch Lantai</td><td>Switch 24-Port 10/100/1000 Mbps</td><td>8 Unit</td><td>1 Switch per ruangan (Total 8 ruangan lantai 1-4)</td></tr>
+          <tr><td>3</td><td>Switch Backbone</td><td>Gigabit Switch 24-Port Manageable</td><td>1 Unit</td><td>Ruang Server (Distribusi antarlantai &amp; Server Farm)</td></tr>
+          <tr><td>4</td><td>Hub Tambahan</td><td>Hub 8-Port 10/100 Mbps</td><td>1 Unit</td><td>Jalur monitoring &amp; analisis traffic jaringan</td></tr>
+          <tr><td>5</td><td>Server Komputer</td><td>Intel Xeon/Core i5, 16GB RAM, 512GB SSD</td><td>2 Unit</td><td>1x Dedicated Web/Proxy, 1x Dedicated Mail Server</td></tr>
+          <tr><td>6</td><td>Access Point</td><td>Dual-Band 802.11ac Gigabit AP</td><td>2 Unit</td><td>Layanan Hotspot Tamu Ruang Publik &amp; Ruang Kerja</td></tr>
+          <tr><td>7</td><td>Kabel &amp; RJ45</td><td>UTP Cat5e High Quality + RJ45</td><td>1 Roll + Box</td><td>Pengkabelan horizontal client &amp; vertical backbone</td></tr>
+        </tbody>
+      </table>
+
+      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">2. Analisis Kinerja Perangkat Berdasarkan Layer OSI</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Lapisan OSI</th><th>Perangkat Terlibat</th><th>Karakteristik &amp; Analisis Kinerja</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Layer 1 (Physical)</strong></td>
+            <td>Kabel UTP Cat5e, RJ45, Hub 8-Port</td>
+            <td>Mentransmisikan bit sinyal elektrik. Cat5e mendukung bandwidth 1000 Mbps hingga 100 meter. Hub beroperasi secara shared collision domain untuk port monitoring.</td>
+          </tr>
+          <tr>
+            <td><strong>Layer 2 (Data Link)</strong></td>
+            <td>Switch 24-Port, NIC Client, AP</td>
+            <td>Meneruskan frame data berdasarkan Hardware MAC Address. Setiap port switch membentuk dedicated collision domain mandiri (Full Duplex 1 Gbps), mencegah tabrakan data 24 client ke server.</td>
+          </tr>
+          <tr>
+            <td><strong>Layer 3 (Network)</strong></td>
+            <td>Router MikroTik, IP Routing</td>
+            <td>Menangani pengalamatan IP, pemisahan broadcast domain, routing antarsubnet (LAN, WLAN, WAN), NAT Masquerade, serta filtering paket data pada Firewall Filter.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="print-sign">
+      <div class="sig-box">
+        <div>Peserta Ujian,</div>
+        <div class="sig-space"></div>
+        <div style="font-weight:700; text-decoration:underline;" class="doc_name">Ahmad Dani</div>
+        <div>NIS: <span class="doc_nis">212210045</span></div>
+      </div>
+      <div class="sig-box">
+        <div>Asesor Penguji,</div>
+        <div class="sig-space"></div>
+        <div style="font-weight:700; text-decoration:underline;">( .................................................... )</div>
+        <div>NIP / No. Reg. Asesor</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 6: RUBRIK -->
+  <div id="pane-rubrik" class="pane printable">
+    <div class="print-head">
+      <h2 style="font-size:14pt; margin:0;">LEMBAR PENILAIAN UJI KOMPETENSI KEAHLIAN (UKK)</h2>
+      <p style="font-size:10pt; margin:2px 0;">REKAPITULASI PENGUJIAN SISTEM &bull; TA 2026/2027</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>Ceklis Verifikasi Asesor &amp; Kalkulator Nilai</span>
+        <button class="btn btn-sm no-print" onclick="window.print()">Cetak Lembar Nilai</button>
+      </div>
+
+      <div style="font-weight:700; margin-bottom:6px; font-size:13px;">A. Verifikasi Paket B: Cisco Packet Tracer (50%)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Koneksi Serial WAN Frame Relay</td><td>Ping antar interface Serial 10.10.10.1 &lt;-&gt; 10.10.10.2 Reply 100%</td><td>10</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Inter-VLAN &amp; Routing RIP v2</td><td>Ping dari PC ADM Jakarta tembus ke PC Finance Bandung</td><td>15</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>DHCP Server RoAS</td><td>Client menerima IP otomatis &amp; DNS 192.168.1.100</td><td>10</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>DNS, Web &amp; Mail Server</td><td>Browser membuka usklsp.com &amp; email terkirim antaruser</td><td>15</td></tr>
+        </tbody>
+      </table>
+
+      <div style="font-weight:700; margin:14px 0 6px; font-size:13px;">B. Verifikasi Paket C: Mikrotik &amp; Kabel LAN (50%)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th width="40">Cek</th><th>Komponen Pengujian</th><th>Hasil yang Diharapkan</th><th width="60">Skor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Fisik 2 Kabel UTP Straight</td><td>Lampu 1-8 pada Cable Tester menyala hijau berurutan</td><td>10</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>LAN DHCP Pool 99 Client</td><td>Client kabel menerima IP dari range 192.168.50.2-192.168.50.100</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Ping Router (Poin 8)</td><td>IP .2-.50 RTO ping router, sedangkan .51-.100 berhasil reply</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Ping Wireless (Poin 9)</td><td>IP .51-.100 RTO ping ke arah client wireless 192.168.20.0/24</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Logging Akses ke Disk (Poin 10)</td><td>Log akses router tercatat dan tersimpan di media disk</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Hotspot Mikhmon (Poin 14)</td><td>Login captive portal aktif, limit 5M/10m &amp; 2M/5m berfungsi</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Situs www.detik.com (Poin 16)</td><td>Akses web detik.com terblokir (Access Denied / Reset)</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir File .mp3 &amp; .mkv (Poin 17)</td><td>Download file .mp3 / .mkv digagalkan error 403 Forbidden</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Blokir Konten "games" (Poin 18)</td><td>URL dengan kata "games" langsung diblokir proxy/firewall</td><td>5</td></tr>
+          <tr><td><input type="checkbox" onchange="calcScore()"></td><td>Redirect lionair ke bnsp (Poin 19)</td><td>Akses lionair.co.id otomatis dialihkan ke bnsp.go.id</td><td>5</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:var(--bg-subtle); border:1px solid var(--border-strong); border-radius:6px; padding:12px 18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span style="font-weight:600; color:var(--text-muted);">TOTAL PEROLEHAN SKOR:</span>
+          <span id="final_score" style="font-size:20px; font-weight:800; color:var(--primary); margin-left:8px;">0 / 100</span>
+        </div>
+        <div>
+          <span style="font-weight:600; color:var(--text-muted);">PREDIKAT:</span>
+          <span id="final_grade" style="font-size:13px; font-weight:700; margin-left:8px; padding:4px 10px; border-radius:4px; background:#e2e8f0; color:#334155;">BELUM LENGKAP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="print-sign">
+      <div class="sig-box">
+        <div>Peserta Ujian,</div>
+        <div class="sig-space"></div>
+        <div style="font-weight:700; text-decoration:underline;" class="doc_name">Ahmad Dani</div>
+        <div>NIS: <span class="doc_nis">212210045</span></div>
+      </div>
+      <div class="sig-box">
+        <div>Asesor Penguji,</div>
+        <div class="sig-space"></div>
+        <div style="font-weight:700; text-decoration:underline;">( .................................................... )</div>
+        <div>Tanda Tangan &amp; Tanggal</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const defaultData = {
+  nama: 'Ahmad Dani',
+  nis: '212210045',
+  kelas: 'XII TKJ 2',
+  domain: 'smkskartikax1.sch.id',
+  iface_wan: 'ether1',
+  iface_lan: 'ether2',
+  iface_ap: 'ether3',
+  wan_mode: 'dhcp',
+  ros_ver: 'v7',
+  poin19: 'redirect'
+};
+
+let currentVouchers = [];
+
+function loadData() {
+  const s = localStorage.getItem('ukk_cheat_st');
+  if (s) {
+    try { return { ...defaultData, ...JSON.parse(s) }; } catch(e){}
+  }
+  return { ...defaultData };
+}
+
+function saveData(d) {
+  localStorage.setItem('ukk_cheat_st', JSON.stringify(d));
+}
+
+function switchPane(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  
+  const btn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(id));
+  if (btn) btn.classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function makeSlug(n) {
+  return n.trim().toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_').slice(0, 14);
+}
+
+function copyBox(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = el.innerText || el.textContent;
+  navigator.clipboard.writeText(t).then(() => {
+    alert('Konfigurasi berhasil disalin ke clipboard!');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = t;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('Konfigurasi berhasil disalin ke clipboard!');
+  });
+}
+
+function downloadRSC() {
+  const code = document.getElementById('box_mikrotik_rsc').textContent;
+  const st = loadData();
+  const name = `UKK_Mikrotik_${makeSlug(st.nama)}.rsc`;
+  const blob = new Blob([code], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function generateVouchers() {
+  currentVouchers = [];
+  // 5x 5M
+  for (let i = 1; i <= 5; i++) {
+    const u = 'u5m_' + Math.floor(100 + Math.random() * 900);
+    const p = Math.floor(1000 + Math.random() * 9000).toString();
+    currentVouchers.push({ user: u, pass: p, profile: 'UKK-5M', rate: '5M/5M', uptime: '00:10:00' });
+  }
+  // 5x 2M
+  for (let i = 1; i <= 5; i++) {
+    const u = 'u2m_' + Math.floor(100 + Math.random() * 900);
+    const p = Math.floor(1000 + Math.random() * 9000).toString();
+    currentVouchers.push({ user: u, pass: p, profile: 'UKK-2M', rate: '2M/2M', uptime: '00:05:00' });
+  }
+  renderVouchers();
+}
+
+function renderVouchers() {
+  const cont = document.getElementById('voucher_container');
+  const cliPre = document.getElementById('box_voucher_cli');
+  cont.innerHTML = '';
+  
+  let cli = '# Direct RouterOS User Fallback\n/ip hotspot user\n';
+  currentVouchers.forEach(v => {
+    const d = document.createElement('div');
+    d.className = 'voucher-card';
+    d.innerHTML = `
+      <div class="vc-title">HOTSPOT UKK &bull; ${v.profile}</div>
+      <div class="vc-user">${v.user}</div>
+      <div class="vc-pass">Pass: ${v.pass}</div>
+      <div class="vc-meta">Speed: ${v.rate} &bull; Time: ${v.uptime}</div>
+    `;
+    cont.appendChild(d);
+    cli += `add name="${v.user}" password="${v.pass}" profile="${v.profile}" limit-uptime="${v.uptime}" comment="UKK User"\n`;
+  });
+  cliPre.textContent = cli;
+}
+
+function calcScore() {
+  const cbs = document.querySelectorAll('#pane-rubrik input[type="checkbox"]');
+  const weights = [10, 15, 10, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+  let tot = 0;
+  cbs.forEach((cb, i) => { if (cb.checked) tot += weights[i] || 0; });
+  
+  const scEl = document.getElementById('final_score');
+  const grEl = document.getElementById('final_grade');
+  scEl.textContent = `${tot} / 100`;
+
+  if (tot >= 90) {
+    grEl.textContent = 'KOMPETEN SANGAT MEMUASKAN (A)';
+    grEl.style.background = '#dcfce7'; grEl.style.color = '#15803d';
+  } else if (tot >= 75) {
+    grEl.textContent = 'KOMPETEN (B)';
+    grEl.style.background = '#e0f2fe'; grEl.style.color = '#0369a1';
+  } else if (tot >= 60) {
+    grEl.textContent = 'CUKUP KOMPETEN (C)';
+    grEl.style.background = '#fef3c7'; grEl.style.color = '#92400e';
+  } else {
+    grEl.textContent = 'BELUM KOMPETEN';
+    grEl.style.background = '#fee2e2'; grEl.style.color = '#991b1b';
+  }
+}
+
+function refreshAll() {
+  const st = {
+    nama: document.getElementById('in_nama').value || 'Ahmad Dani',
+    nis: document.getElementById('in_nis').value || '212210045',
+    kelas: document.getElementById('in_kelas').value,
+    domain: document.getElementById('in_domain').value || 'smkskartikax1.sch.id',
+    iface_wan: document.getElementById('in_iface_wan').value || 'ether1',
+    iface_lan: document.getElementById('in_iface_lan').value || 'ether2',
+    iface_ap: document.getElementById('in_iface_ap').value || 'ether3',
+    wan_mode: document.getElementById('in_wan_mode').value,
+    ros_ver: document.getElementById('in_ros_ver').value,
+    poin19: document.getElementById('in_poin19').value
+  };
+  saveData(st);
+
+  const slug = makeSlug(st.nama);
+  const ssid = `${slug}@ProxyUKK`;
+  const adminMail = `${slug}@${st.domain}`;
+
+  document.getElementById('out_ssid').value = ssid;
+  document.getElementById('out_admin').value = adminMail;
+  document.getElementById('lbl_ros').textContent = st.ros_ver;
+
+  document.querySelectorAll('.doc_name').forEach(el => el.textContent = st.nama);
+  document.querySelectorAll('.doc_nis').forEach(el => el.textContent = st.nis);
+
+  // Render Cisco Scripts
+  renderCisco(st, slug);
+
+  // Render Mikrotik Script
+  renderMikrotik(st, slug, adminMail);
+}
+
+function renderCisco(st, slug) {
+  const hq = `! CISCO ROUTER 0 (HEAD OFFICE - JAKARTA)
+enable
+configure terminal
+hostname Router-HQ
+
+interface Serial0/1/0
+ description KONEKSI-FRAME-RELAY-KE-CABANG
+ ip address 10.10.10.1 255.255.255.0
+ encapsulation frame-relay
+ no shutdown
+ exit
+
+interface FastEthernet0/0
+ no shutdown
+ exit
+
+interface FastEthernet0/0.10
+ description VLAN-10-SERVER
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.0
+ exit
+
+interface FastEthernet0/0.20
+ description VLAN-20-ADM-PUBLIK
+ encapsulation dot1Q 20
+ ip address 192.168.2.1 255.255.255.0
+ exit
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.2
+ip dhcp excluded-address 192.168.1.100
+ip dhcp excluded-address 192.168.2.1
+
+ip dhcp pool v10
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 192.168.1.100
+ exit
+
+ip dhcp pool v20
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+ dns-server 192.168.1.100
+ exit
+
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ network 192.168.1.0
+ network 192.168.2.0
+ exit
+end
+wr`;
+  document.getElementById('box_r_hq').textContent = hq;
+
+  const br = `! CISCO ROUTER 1 (BRANCH OFFICE - BANDUNG)
+enable
+configure terminal
+hostname Router-Branch
+
+interface Serial0/1/0
+ description KONEKSI-FRAME-RELAY-KE-PUSAT
+ ip address 10.10.10.2 255.255.255.0
+ encapsulation frame-relay
+ no shutdown
+ exit
+
+interface FastEthernet0/0
+ no shutdown
+ exit
+
+interface FastEthernet0/0.10
+ description VLAN-10-FINANCE
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ exit
+
+interface FastEthernet0/0.20
+ description VLAN-20-ADM-PUBLIK
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+ exit
+
+ip dhcp excluded-address 192.168.10.1
+ip dhcp excluded-address 192.168.20.1
+
+ip dhcp pool v10
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 192.168.1.100
+ exit
+
+ip dhcp pool v20
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 192.168.1.100
+ exit
+
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ network 192.168.10.0
+ network 192.168.20.0
+ exit
+end
+wr`;
+  document.getElementById('box_r_br').textContent = br;
+
+  document.getElementById('box_sw_hq_srv').textContent = `enable\nconf t\nhostname SW-HQ-Server\nvlan 10\n name A\nexit\nvlan 20\n name B\nexit\nint fa0/1\n sw mode trunk\n exit\nint fa1/1\n sw mode trunk\n exit\nint fa2/1\n sw mode access\n sw access vlan 10\n exit\nint fa3/1\n sw mode access\n sw access vlan 10\n exit\nend\nwr`;
+  document.getElementById('box_sw_hq_adm').textContent = `enable\nconf t\nhostname SW-HQ-ADM\nvlan 10\n name A\nexit\nvlan 20\n name B\nexit\nint fa0/1\n sw mode trunk\n exit\nint fa1/1\n sw mode access\n sw access vlan 20\n exit\nint fa2/1\n sw mode access\n sw access vlan 20\n exit\nint fa3/1\n sw mode access\n sw access vlan 20\n exit\nint fa4/1\n sw mode access\n sw access vlan 20\n exit\nend\nwr`;
+  document.getElementById('box_sw_br_fin').textContent = `enable\nconf t\nhostname SW-BR-Finance\nvlan 10\n name A\nexit\nvlan 20\n name B\nexit\nint fa0/1\n sw mode trunk\n exit\nint fa1/1\n sw mode trunk\n exit\nint fa2/1\n sw mode access\n sw access vlan 10\n exit\nint fa3/1\n sw mode access\n sw access vlan 10\n exit\nint fa4/1\n sw mode access\n sw access vlan 10\n exit\nend\nwr`;
+  document.getElementById('box_sw_br_adm').textContent = `enable\nconf t\nhostname SW-BR-ADM\nvlan 10\n name A\nexit\nvlan 20\n name B\nexit\nint fa0/1\n sw mode trunk\n exit\nint fa1/1\n sw mode access\n sw access vlan 20\n exit\nint fa2/1\n sw mode access\n sw access vlan 20\n exit\nint fa3/1\n sw mode access\n sw access vlan 20\n exit\nint fa4/1\n sw mode access\n sw access vlan 20\n exit\nend\nwr`;
+}
+
+function renderMikrotik(st, slug, adminMail) {
+  const isV7 = st.ros_ver === 'v7';
+  let rsc = `# ========================================================
+# MIKROTIK ROUTEROS SCRIPT - SOAL UKK PAKET C
+# Peserta: ${st.nama} (${st.kelas}) - NIS: ${st.nis}
+# Target : RouterOS ${st.ros_ver.toUpperCase()}
+# ========================================================
+
+/system identity set name="UKK-${slug}"
+
+# 1. DNS ISP
+/ip dns set allow-remote-requests=yes cache-size=2048KiB
+
+# 2. NTP CLIENT & CLOCK
+/system clock set time-zone-name=Asia/Jakarta
+`;
+  if (isV7) {
+    rsc += `/system ntp client set enabled=yes servers=id.pool.ntp.org,0.id.pool.ntp.org\n`;
+  } else {
+    rsc += `/system ntp client set enabled=yes primary-ntp=202.162.32.26 secondary-ntp=203.160.128.3\n`;
+  }
+
+  rsc += `
+# 3. WEB PROXY
+/ip proxy set enabled=yes port=8080 cache-administrator="${adminMail}" max-cache-size=none cache-on-disk=no
+
+# 4 & 5. WAN & NAT MASQUERADE
+/ip dhcp-client add interface=${st.iface_wan} disabled=no use-peer-dns=yes use-peer-ntp=yes add-default-route=yes comment="Poin 4-5"
+/ip firewall nat add chain=srcnat out-interface=${st.iface_wan} action=masquerade comment="NAT Internet"
+
+# 6 & 7. JARINGAN LOKAL (LAN 192.168.50.1/25) POOL 99 CLIENT
+/ip address add address=192.168.50.1/25 interface=${st.iface_lan} comment="Poin 6"
+/ip pool add name=dhcp-pool-lan ranges=192.168.50.2-192.168.50.100 comment="Poin 7"
+/ip dhcp-server add name=dhcp-lan interface=${st.iface_lan} address-pool=dhcp-pool-lan lease-time=8h disabled=no
+/ip dhcp-server network add address=192.168.50.0/25 gateway=192.168.50.1 dns-server=192.168.50.1 comment="LAN"
+
+# 11, 12, 13. JARINGAN WIRELESS (WLAN 192.168.20.1/24) POOL 99 CLIENT & HOTSPOT
+/ip address add address=192.168.20.1/24 interface=${st.iface_ap} comment="Poin 11"
+/ip pool add name=dhcp-pool-wlan ranges=192.168.20.2-192.168.20.100 comment="Poin 13"
+/ip dhcp-server add name=dhcp-wlan interface=${st.iface_ap} address-pool=dhcp-pool-wlan lease-time=4h disabled=no
+/ip dhcp-server network add address=192.168.20.0/24 gateway=192.168.20.1 dns-server=192.168.20.1 comment="WLAN"
+
+/ip hotspot profile add name=hsprof-ukk hotspot-address=192.168.20.1 dns-name="${slug}.lan" html-directory=hotspot login-by=http-chap,http-pap
+/ip hotspot add name=hotspot-ukk interface=${st.iface_ap} address-pool=dhcp-pool-wlan profile=hsprof-ukk disabled=no
+
+# 14. USER PROFILE HOTSPOT LIMIT
+/ip hotspot user profile add name="UKK-5M" rate-limit="5M/5M" shared-users=1 status-autorefresh=1m
+/ip hotspot user profile add name="UKK-2M" rate-limit="2M/2M" shared-users=1 status-autorefresh=1m
+
+# 10. LOGGING AKSES KE ROUTER (SIMPAN KE DISK) - TARUH DI ATAS!
+/system logging action set [find name=disk] disk-file-count=2 disk-lines-per-file=1000
+/system logging add action=disk topics=firewall,info prefix="[UKK-LOG]"
+/ip firewall filter add chain=input connection-state=new action=log log-prefix="[ROUTER-ACCESS]" comment="Poin 10: Log Akses"
+
+# 8. BLOKIR PING IP .2-.50 KE ROUTER
+/ip firewall filter add chain=input protocol=icmp src-address=192.168.50.2-192.168.50.50 action=drop comment="Poin 8: Drop Ping Router"
+
+# 9. BLOKIR PING IP .51-.100 KE WIRELESS
+/ip firewall filter add chain=forward protocol=icmp src-address=192.168.50.51-192.168.50.100 dst-address=192.168.20.0/24 action=drop comment="Poin 9: Drop Ping Wireless"
+
+# 15. BATASAN JAM HOTSPOT (HANYA 07.00 - 16.00)
+/ip firewall filter add chain=forward src-address=192.168.20.0/24 out-interface=${st.iface_wan} time=16h-1d,sun,mon,tue,wed,thu,fri,sat action=drop comment="Poin 15: Blokir Malam"
+/ip firewall filter add chain=forward src-address=192.168.20.0/24 out-interface=${st.iface_wan} time=0s-7h,sun,mon,tue,wed,thu,fri,sat action=drop comment="Poin 15: Blokir Pagi"
+
+# 16. BLOKIR HTTPS DETIK.COM
+/ip firewall filter add chain=forward protocol=tcp dst-port=443 tls-host="*detik.com*" action=drop comment="Poin 16: TLS Host detik.com"
+/ip firewall filter add chain=forward content="detik.com" action=drop comment="Poin 16: Content detik.com"
+
+# 18. BLOKIR KONTEN GAMES
+/ip firewall filter add chain=forward content="games" action=drop comment="Poin 18: Content games"
+
+# TRANSPARENT PROXY REDIRECT
+/ip firewall nat add chain=dstnat protocol=tcp dst-port=80 in-interface=${st.iface_lan} action=redirect to-ports=8080 comment="Redirect LAN ke Proxy"
+/ip firewall nat add chain=dstnat protocol=tcp dst-port=80 in-interface=${st.iface_ap} action=redirect to-ports=8080 comment="Redirect WLAN ke Proxy"
+
+# 16, 17, 18, 19. PROXY ACCESS RULES
+/ip proxy access add dst-host="*detik.com*" action=deny comment="Poin 16: Blokir Situs"
+/ip proxy access add path="*.mp3*" action=deny comment="Poin 17: Blokir MP3"
+/ip proxy access add path="*.mkv*" action=deny comment="Poin 17: Blokir MKV"
+/ip proxy access add path="*games*" action=deny comment="Poin 18: Blokir Games"
+`;
+
+  if (st.poin19 === 'redirect') {
+    rsc += `/ip proxy access add dst-host="*lionair.co.id*" action=deny redirect-to="bnsp.go.id" comment="Poin 19: Redirect lionair ke bnsp"\n`;
+  } else {
+    rsc += `/ip hotspot walled-garden add dst-host="*lionair.co.id*" action=allow comment="Poin 19: Walled Garden lionair"\n/ip hotspot walled-garden add dst-host="*bnsp.go.id*" action=allow comment="Poin 19: Walled Garden bnsp"\n`;
+  }
+
+  rsc += `
+# SERVICE API MIKHMON
+/ip service set api port=8728 disabled=no
+/ip service set winbox port=8291 disabled=no
+`;
+
+  document.getElementById('box_mikrotik_rsc').textContent = rsc;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const d = loadData();
+  document.getElementById('in_nama').value = d.nama;
+  document.getElementById('in_nis').value = d.nis;
+  document.getElementById('in_kelas').value = d.kelas;
+  document.getElementById('in_domain').value = d.domain;
+  document.getElementById('in_iface_wan').value = d.iface_wan;
+  document.getElementById('in_iface_lan').value = d.iface_lan;
+  document.getElementById('in_iface_ap').value = d.iface_ap;
+  document.getElementById('in_wan_mode').value = d.wan_mode;
+  document.getElementById('in_ros_ver').value = d.ros_ver;
+  document.getElementById('in_poin19').value = d.poin19;
+
+  generateVouchers();
+  refreshAll();
+});
+</script>
+
+</body>
+</html>

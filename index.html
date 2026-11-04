@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal UKK TKJ TA 2026/2027 - SMKS Kartika X-1</title>
+<style>
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --amber: #d97706;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.school-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #334155;
+}
+main {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+}
+.hero {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.hero h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+@media (max-width: 768px) {
+  .mode-grid { grid-template-columns: 1fr; }
+}
+.portal-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.portal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border-color: #cbd5e1;
+}
+.card-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.tag-mode {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.tag-belajar {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+.tag-cheat {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+.card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.feature-list {
+  list-style: none;
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.bullet {
+  color: var(--primary);
+  font-weight: 700;
+}
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+.btn-belajar {
+  background: var(--primary);
+  color: #ffffff;
+}
+.btn-belajar:hover { background: var(--primary-hover); }
+.btn-cheat {
+  background: #0f172a;
+  color: #ffffff;
+}
+.btn-cheat:hover { background: #1e293b; }
+.info-box {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.info-box strong { color: var(--text-main); }
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #94a3b8;
+  border-top: 1px solid var(--border);
+  background: #ffffff;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div style="font-weight:700; font-size:15px; color:#0f172a;">SMKS KARTIKA X-1 JAKARTA</div>
+      <div style="font-size:12px; color:#64748b;">Jurusan Teknik Komputer dan Jaringan (TKJ)</div>
+    </div>
+    <span class="school-badge">UKK TA 2026/2027</span>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Portal Uji Kompetensi Keahlian (UKK) TKJ</h1>
+    <p>Pilih mode aplikasi sesuai kebutuhan: gunakan Modul Belajar untuk pemahaman konsep dan panduan klik visual, atau Workbench Cepat untuk generator konfigurasi dan pengujian asesor.</p>
+  </div>
+
+  <div class="mode-grid">
+    <!-- CARD 1: MODUL PEMBELAJARAN -->
+    <a href="modul-belajar.html" class="portal-card">
+      <div>
+        <div class="card-header-line">
+          <span class="tag-mode tag-belajar">Untuk Siswa &amp; Praktik Mandiri</span>
+        </div>
+        <div class="card-title">1. Modul Praktikum &amp; Panduan Visual</div>
+        <div class="card-desc">
+          Panduan komprehensif langkah demi langkah. Dilengkapi simulasi tampilan jendela WinBox, diagram fisik pinout kabel, alur menu, dan penjelasan alasan teknis di balik setiap konfigurasi.
+        </div>
+        <ul class="feature-list">
+          <li><span class="bullet">&bull;</span> <strong>Visual Box WinBox:</strong> Meniru formulir asli WinBox (Tab General, Extra, Action).</li>
+          <li><span class="bullet">&bull;</span> <strong>Diagram Fisik Kabel UTP:</strong> Skema warna 8 pin standar T568B dan tester check.</li>
+          <li><span class="bullet">&bull;</span> <strong>Packet Tracer Hardware:</strong> Tata cara pasang modul WIC-2T di rack router.</li>
+          <li><span class="bullet">&bull;</span> <strong>Kenapa Harus Begini?</strong> Penjelasan logika firewall dan solusi jika error di lab.</li>
+        </ul>
+      </div>
+      <div class="card-btn btn-belajar">Buka Modul Pembelajaran &rarr;</div>
+    </a>
+
+    <!-- CARD 2: CHEAT & WORKBENCH GENERATOR -->
+    <a href="cheat-konfigurasi.html" class="portal-card">
+      <div>
+        <div class="card-header-line">
+          <span class="tag-mode tag-cheat">Untuk Guru, Asesor &amp; Fast Deploy</span>
+        </div>
+        <div class="card-title">2. Workbench Cepat &amp; Generator Asesor</div>
+        <div class="card-desc">
+          Perkakas instan untuk deploy konfigurasi sekali salin. Dilengkapi generator parameter nama peserta, file script .rsc Mikrotik siap unduh, CLI Cisco lengkap, dan rekap lembar nilai asesor.
+        </div>
+        <ul class="feature-list">
+          <li><span class="bullet">&bull;</span> <strong>Generator Parameter:</strong> Otomatis ubah nama peserta, SSID, dan email proxy.</li>
+          <li><span class="bullet">&bull;</span> <strong>1-Klik Salin Cisco CLI:</strong> Full script Router HQ, Cabang, dan 4 Switch.</li>
+          <li><span class="bullet">&bull;</span> <strong>1-Klik Unduh Mikrotik .rsc:</strong> Script 19 poin soal Paket C siap import.</li>
+          <li><span class="bullet">&bull;</span> <strong>Generator 10 User Hotspot:</strong> Pembuat akun acak 5M/10m &amp; 2M/5m seketika.</li>
+          <li><span class="bullet">&bull;</span> <strong>Lembar Penilaian Siap Cetak:</strong> Rubrik skor otomatis 0-100 dan print PDF.</li>
+        </ul>
+      </div>
+      <div class="card-btn btn-cheat">Buka Workbench Cepat &rarr;</div>
+    </a>
+  </div>
+
+  <div class="info-box">
+    <strong>Ringkasan Ujian Keahlian:</strong><br>
+    &bull; <strong>Paket B (Cisco):</strong> PT. Digital Techno Indonesia &mdash; Merancang WAN Frame Relay Jakarta-Bandung, Sub-interface 802.1Q (VLAN 10 Server &amp; VLAN 20 ADM), DHCP Server, Routing RIP v2, serta DNS, Web, dan Mail Server.<br>
+    &bull; <strong>Paket C (Mikrotik &amp; Kabel):</strong> PT. Teknologi Warungpedia &mdash; Perencanaan jaringan Gedung 4 Lantai, pembuatan 2 kabel UTP Straight (T568B), konfigurasi RouterOS (DNS, NTP, WebProxy, DHCP LAN /25 99 client, Hotspot Mikhmon, Firewall Filter drop ping .2-.50 dan .51-.100, Logging ke Disk, dan pemblokiran situs/file/konten).
+  </div>
+</main>
+
+<footer>
+  Laboratorium Komputer SMKS Kartika X-1 Jakarta &bull; Modul Pembelajaran &amp; Workbench UKK TA 2026/2027
+</footer>
+
+</body>
+</html>

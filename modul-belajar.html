@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul Praktikum & Panduan Langkah UKK TKJ 26/27</title>
+<style>
+:root {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-winbox: #e2e8f0;
+  --border-light: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --primary-subtle: #e0f2fe;
+  --amber: #b45309;
+  --amber-subtle: #fef3c7;
+  --green: #15803d;
+  --green-subtle: #dcfce7;
+  --winbox-header: #334155;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #0f172a;
+}
+.brand-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.header-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--primary-subtle);
+}
+.header-links a:hover { background: #bae6fd; }
+
+.page-layout {
+  display: flex;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Sidebar TOC */
+.sidebar {
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid var(--border-light);
+  position: sticky;
+  top: 61px;
+  height: calc(100vh - 61px);
+  overflow-y: auto;
+  padding: 20px 14px;
+  flex-shrink: 0;
+}
+.toc-category {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-subtle);
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-left: 8px;
+}
+.toc-category:first-child { margin-top: 0; }
+.toc-link {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.1s ease;
+}
+.toc-link:hover {
+  background: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: 1040px;
+}
+
+.lesson-section {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.lesson-header {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lesson-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+}
+.lesson-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+}
+
+/* Callouts */
+.callout {
+  border-left: 4px solid var(--primary);
+  background: var(--primary-subtle);
+  padding: 12px 16px;
+  border-radius: 0 6px 6px 0;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #0369a1;
+  line-height: 1.6;
+}
+.callout strong { color: #0c4a6e; }
+.callout-amber {
+  border-left-color: var(--amber);
+  background: var(--amber-subtle);
+  color: #92400e;
+}
+.callout-amber strong { color: #78350f; }
+
+/* Breadcrumb Navigation Flow */
+.breadcrumb-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.bc-step {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #0f172a;
+}
+.bc-arrow { color: #94a3b8; font-weight: bold; }
+
+/* Visual WinBox Mockup Window */
+.winbox-window {
+  background: #f1f5f9;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  margin: 18px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  max-width: 650px;
+}
+.wb-titlebar {
+  background: var(--winbox-header);
+  color: #ffffff;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wb-tabs {
+  background: #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  display: flex;
+  padding: 4px 8px 0;
+  gap: 4px;
+}
+.wb-tab {
+  background: #cbd5e1;
+  border: 1px solid #94a3b8;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  cursor: default;
+}
+.wb-tab.active {
+  background: #ffffff;
+  border-bottom: 1px solid #ffffff;
+  color: #0f172a;
+  margin-bottom: -1px;
+}
+.wb-body {
+  background: #ffffff;
+  padding: 16px;
+}
+.wb-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.wb-label {
+  color: #334155;
+  font-weight: 500;
+}
+.wb-input {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #0f172a;
+  font-weight: 600;
+}
+.wb-select {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #0f172a;
+  font-weight: 600;
+}
+.wb-hint {
+  font-size: 11px;
+  color: var(--primary);
+  margin-top: 2px;
+  grid-column: 2;
+}
+
+/* Why Box (Pedagogical concept) */
+.concept-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid #64748b;
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.concept-title {
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+/* RJ45 Wire Diagram */
+.cable-block {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.rj45-box {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 16px;
+  width: 320px;
+}
+.rj45-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+}
+.pin-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pin-idx { width: 20px; color: var(--text-subtle); font-family: var(--font-mono); }
+.wire-bar {
+  height: 16px;
+  flex: 1;
+  border-radius: 3px;
+  margin: 0 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.pin-label { width: 120px; font-size: 11px; color: #334155; }
+
+.wire-wo { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #f97316 6px, #f97316 12px); }
+.wire-o  { background: #ea580c; }
+.wire-wg { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #22c55e 6px, #22c55e 12px); }
+.wire-b  { background: #2563eb; }
+.wire-wb { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #3b82f6 6px, #3b82f6 12px); }
+.wire-g  { background: #16a34a; }
+.wire-wbr{ background: repeating-linear-gradient(45deg, #ffffff, #ffffff 6px, #854d0e 6px, #854d0e 12px); }
+.wire-br { background: #713f12; }
+
+/* Clean Data Table */
+table.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 14px 0;
+}
+table.guide-table th {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 8px 12px;
+  font-weight: 600;
+  text-align: left;
+}
+table.guide-table td {
+  border: 1px solid var(--border-light);
+  padding: 8px 12px;
+  color: var(--text-muted);
+}
+table.guide-table tr:hover td { background: #f8fafc; }
+
+@media (max-width: 900px) {
+  .page-layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .main-content { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand-name">MODUL PRAKTIKUM &amp; JOBSHEET UKK TKJ 26/27</div>
+    <div class="brand-sub">SMKS Kartika X-1 Jakarta &bull; Panduan Belajar Mandiri Berbasis GUI &amp; Konsep</div>
+  </div>
+  <div class="header-links">
+    <a href="cheat-konfigurasi.html">&larr; Pindah ke Workbench Cepat (Guru/Asesor)</a>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <!-- Sidebar Nav -->
+  <aside class="sidebar">
+    <div class="toc-category">Kabel &amp; Fisik</div>
+    <a href="#sec-kabel" class="toc-link">1. Crimping Kabel UTP T568B</a>
+    <a href="#sec-cisco-rack" class="toc-link">2. Cisco: Modul WIC-2T di Rack</a>
+
+    <div class="toc-category">Cisco Packet Tracer</div>
+    <a href="#sec-cisco-wan" class="toc-link">3. WAN Frame Relay &amp; Cloud</a>
+    <a href="#sec-cisco-roas" class="toc-link">4. Router on a Stick (VLAN 10/20)</a>
+    <a href="#sec-cisco-switch" class="toc-link">5. Switch Trunking &amp; Port Access</a>
+    <a href="#sec-cisco-services" class="toc-link">6. Server0 (DNS, Web, Mail)</a>
+
+    <div class="toc-category">Mikrotik RouterOS</div>
+    <a href="#sec-mik-wan" class="toc-link">7. DNS, NTP, WAN &amp; NAT</a>
+    <a href="#sec-mik-lan" class="toc-link">8. LAN /25 &amp; Pool 99 Client</a>
+    <a href="#sec-mik-firewall" class="toc-link">9. Firewall Filter &amp; Log Disk</a>
+    <a href="#sec-mik-hotspot" class="toc-link">10. Hotspot &amp; Akun Mikhmon</a>
+    <a href="#sec-mik-proxy" class="toc-link">11. Web Proxy &amp; Content Blocking</a>
+
+    <div class="toc-category">Dokumen &amp; Teori</div>
+    <a href="#sec-teori-osi" class="toc-link">12. Gedung 4 Lantai &amp; Layer OSI</a>
+  </aside>
+
+  <!-- Content -->
+  <main class="main-content">
+
+    <!-- SECTION 1: KABEL -->
+    <section id="sec-kabel" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">1. Instalasi Kabel UTP Straight (Standar TIA/EIA-568B)</div>
+        <span class="lesson-badge">Paket C - Aspek Fisik</span>
+      </div>
+
+      <p>
+        Pada uji kompetensi Paket C, setiap peserta diwajibkan membuat <strong>2 kabel jaringan tipe lurus (Straight-Through)</strong>. Kabel ini digunakan untuk menghubungkan perangkat berbeda layer (Router ke Switch, atau Switch ke PC Client).
+      </p>
+
+      <div class="cable-block">
+        <div class="rj45-box">
+          <div class="rj45-title">URUTAN PIN KONEKTOR RJ-45 (T568B)</div>
+          <div class="pin-item"><span class="pin-idx">1</span><div class="wire-bar wire-wo"></div><span class="pin-label">Putih - Oranye</span></div>
+          <div class="pin-item"><span class="pin-idx">2</span><div class="wire-bar wire-o"></div><span class="pin-label">Oranye</span></div>
+          <div class="pin-item"><span class="pin-idx">3</span><div class="wire-bar wire-wg"></div><span class="pin-label">Putih - Hijau</span></div>
+          <div class="pin-item"><span class="pin-idx">4</span><div class="wire-bar wire-b"></div><span class="pin-label">Biru</span></div>
+          <div class="pin-item"><span class="pin-idx">5</span><div class="wire-bar wire-wb"></div><span class="pin-label">Putih - Biru</span></div>
+          <div class="pin-item"><span class="pin-idx">6</span><div class="wire-bar wire-g"></div><span class="pin-label">Hijau</span></div>
+          <div class="pin-item"><span class="pin-idx">7</span><div class="wire-bar wire-wbr"></div><span class="pin-label">Putih - Cokelat</span></div>
+          <div class="pin-item"><span class="pin-idx">8</span><div class="wire-bar wire-br"></div><span class="pin-label">Cokelat</span></div>
+        </div>
+
+        <div style="flex:1; min-width:280px;">
+          <h4 style="font-size:14px; margin-bottom:8px;">Langkah Pengerjaan Praktik:</h4>
+          <ol style="margin-left: 20px; font-size:13px; line-height:1.8;">
+            <li>Kupas kulit luar kabel UTP sepanjang 2 cm. Hati-hati jangan sampai melukai isolasi kawat tembaga di dalamnya.</li>
+            <li>Uraikan pilinan 4 pasang kabel, luruskan satu per satu hingga tidak ada kawat yang melengkung.</li>
+            <li>Susun kawat secara sejajar dari kiri ke kanan sesuai urutan <strong>1 s.d. 8</strong> di sebelah kiri.</li>
+            <li>Ratakan ujung kawat menggunakan pemotong tang crimping (sisakan panjang sekitar 1.2 cm).</li>
+            <li>Dorong kawat masuk ke konektor RJ-45 hingga seluruh ujung tembaga menyentuh dinding depan pin RJ-45. Pastikan jaket luar kabel ikut masuk ke dalam badan konektor.</li>
+            <li>Crimp dengan kuat menggunakan tang crimping hingga terdengar bunyi klik pengunci.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="concept-box">
+        <div class="concept-title">Cara Membaca LAN Cable Tester:</div>
+        Kedua ujung kabel straight yang sudah dicrimp ditancapkan ke Master dan Remote tester. Nyalakan switch tester: Lampu LED nomor <strong>1, 2, 3, 4, 5, 6, 7, 8</strong> di kedua modul wajib menyala hijau secara bergantian dan berurutan. Jika ada lampu yang mati atau melompat urutannya, kabel wajib dipotong dan dicrimp ulang.
+      </div>
+    </section>
+
+    <!-- SECTION 2: CISCO RACK -->
+    <section id="sec-cisco-rack" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">2. Cisco Packet Tracer: Pemasangan Modul WIC-2T di Rack</div>
+        <span class="lesson-badge">Paket B - Hardware</span>
+      </div>
+
+      <p>
+        Router Cisco seri 2811 secara standar hanya memiliki 2 port FastEthernet (Fa0/0 dan Fa0/1). Agar router memiliki port serial <code>Serial0/1/0</code> sesuai perintah soal, kita harus menambahkan modul antarmuka WAN.
+      </p>
+
+      <div class="callout callout-amber">
+        <strong>PENTING:</strong> Di dunia nyata maupun di simulator Packet Tracer, Anda <strong>TIDAK BISA</strong> memasang modul jika router dalam keadaan menyala!
+      </div>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">Tahapan Pemasangan Fisik:</h4>
+      <ol style="margin-left:20px; font-size:13px; line-height:1.8;">
+        <li>Pilih <strong>Router 2811</strong> pada lembar kerja Packet Tracer. Beri nama <code>Router-HQ</code> dan <code>Router-Branch</code>.</li>
+        <li>Klik perangkat Router &rarr; Masuk ke tab <strong>Physical</strong>.</li>
+        <li>Perhatikan gambar panel belakang router di sebelah kanan: Klik <strong>saklar daya berwarna hijau</strong> untuk mematikan daya (lampu indikator mati).</li>
+        <li>Pada daftar modul di sebelah kiri, klik modul <strong>WIC-2T</strong> (modul 2-port serial).</li>
+        <li>Tarik (drag and drop) gambar modul ke <strong>Slot WIC 1</strong> (slot kosong di bagian kanan atas).</li>
+        <li>Klik kembali saklar daya untuk <strong>menyalakan router</strong>. Sekarang interface <code>Serial0/1/0</code> telah tersedia dan siap dikonfigurasi.</li>
+      </ol>
+    </section>
+
+    <!-- SECTION 3: CLOUD & WAN -->
+    <section id="sec-cisco-wan" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">3. Cisco: Konfigurasi WAN Cloud Frame Relay &amp; Serial Inter-Router</div>
+        <span class="lesson-badge">Paket B - WAN</span>
+      </div>
+
+      <p>
+        Jalur utama inter-router menggunakan network <code>10.10.10.0/24</code> yang dihubungkan melalui cloud Frame Relay.
+      </p>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">A. Setting GUI di Cloud-PT (Jaringan WAN):</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">Cloud0</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Tab Config</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Serial0: DLCI 101, Name A</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Serial1: DLCI 201, Name B</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Frame Relay: Connect Serial0 A ke Serial1 B</span>
+      </div>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">B. Konfigurasi Serial di Masing-masing Router:</h4>
+      <table class="guide-table">
+        <thead>
+          <tr><th>Perangkat</th><th>Perintah CLI Serial</th><th>Fungsi Perintah</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Router-HQ (Jakarta)</strong></td>
+            <td>
+              <code>int se0/1/0</code><br>
+              <code>ip add 10.10.10.1 255.255.255.0</code><br>
+              <code>encap frame-relay</code><br>
+              <code>no sh</code>
+            </td>
+            <td>Memberikan IP 10.10.10.1, mengaktifkan enkapsulasi Frame Relay, dan menyalakan interface.</td>
+          </tr>
+          <tr>
+            <td><strong>Router-Branch (Bandung)</strong></td>
+            <td>
+              <code>int se0/1/0</code><br>
+              <code>ip add 10.10.10.2 255.255.255.0</code><br>
+              <code>encap frame-relay</code><br>
+              <code>no sh</code>
+            </td>
+            <td>Memberikan IP 10.10.10.2 dan mengaktifkan enkapsulasi Frame Relay.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="concept-box">
+        <div class="concept-title">Mengapa Router Tidak Memerlukan Perintah "clock rate"?</div>
+        Kabel serial memiliki dua sisi: DCE (penentu clock frekuensi) dan DTE (penerima sinyal). Pada skenario ini, sisi DCE terpasang di Cloud provider (tampak ikon jam pada kabel di sisi Cloud). Router bertindak sebagai DTE, sehingga perintah <code>clock rate</code> tidak boleh dipasang di router agar tidak terjadi bentrok clocking.
+      </div>
+    </section>
+
+    <!-- SECTION 4: ROAS -->
+    <section id="sec-cisco-roas" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">4. Cisco: Router on a Stick (RoAS), DHCP &amp; RIP Routing</div>
+        <span class="lesson-badge">Paket B - Routing &amp; VLAN</span>
+      </div>
+
+      <p>
+        Router-on-a-Stick memungkinkan 1 kabel fisik fisik FastEthernet0/0 membawa traffic dari banyak VLAN sekaligus menggunakan enkapsulasi 802.1Q (Sub-interface).
+      </p>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">Langkah Konfigurasi RoAS di Router:</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">int fa0/0 &rarr; no sh</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">int fa0/0.10 &rarr; encap dot1Q 10 &rarr; ip add 192.168.1.1 255.255.255.0</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">int fa0/0.20 &rarr; encap dot1Q 20 &rarr; ip add 192.168.2.1 255.255.255.0</span>
+      </div>
+
+      <div class="concept-box">
+        <div class="concept-title">Konsep Exclude Address pada DHCP Server:</div>
+        Sebelum membuat DHCP Pool, IP statis wajib dikeluarkan dari sebaran DHCP agar tidak terjadi duplikasi IP di jaringan:<br>
+        &bull; <code>ip dhcp excluded-address 192.168.1.1 192.168.1.2</code> (Untuk gateway dan cadangan DNS)<br>
+        &bull; <code>ip dhcp excluded-address 192.168.1.100</code> (Khusus untuk Server0 yang berjalan statis)<br>
+        &bull; <code>ip dhcp excluded-address 192.168.2.1</code> (Untuk gateway VLAN 20)
+      </div>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">Routing Dinamis RIP v2:</h4>
+      <p style="font-size:13px; color:var(--text-muted);">
+        Kedua router mendaftarkan seluruh network lokal yang terhubung secara langsung (Classful summary network <code>10.0.0.0</code> dan network <code>192.168.x.0</code>). Wajib menyertakan perintah <code>version 2</code> dan <code>no auto-summary</code> agar subnet /24 tidak di-summarize menjadi /16.
+      </p>
+    </section>
+
+    <!-- SECTION 5: SWITCH -->
+    <section id="sec-cisco-switch" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">5. Cisco: Konfigurasi 4 Switch (Trunking &amp; Port Access)</div>
+        <span class="lesson-badge">Paket B - Switching</span>
+      </div>
+
+      <p>
+        Sesuai lembar soal, nama VLAN yang digunakan adalah: <strong>VLAN 10 bernama "A"</strong> dan <strong>VLAN 20 bernama "B"</strong>.
+      </p>
+
+      <table class="guide-table">
+        <thead>
+          <tr><th>Nama Switch</th><th>Port Mode Trunk</th><th>Port Mode Access (Client/Server)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SW-HQ-Server</strong></td>
+            <td><code>Fa0/1</code> (ke Router), <code>Fa1/1</code> (ke Switch ADM)</td>
+            <td><code>Fa2/1</code> (Server0 - VLAN 10), <code>Fa3/1</code> (PC0 - VLAN 10)</td>
+          </tr>
+          <tr>
+            <td><strong>SW-HQ-ADM</strong></td>
+            <td><code>Fa0/1</code> (dari Switch Server)</td>
+            <td>
+              <code>Fa1/1</code> (Access Point - VLAN 20), <code>Fa2/1</code> (PC3 - VLAN 20),<br>
+              <code>Fa3/1</code> (PC4 - VLAN 20), <code>Fa4/1</code> (Printer2 - VLAN 20)
+            </td>
+          </tr>
+          <tr>
+            <td><strong>SW-BR-Finance</strong></td>
+            <td><code>Fa0/1</code> (ke Router), <code>Fa1/1</code> (ke Switch ADM)</td>
+            <td>
+              <code>Fa2/1</code> (Laptop2 - VLAN 10), <code>Fa3/1</code> (Printer0 - VLAN 10),<br>
+              <code>Fa4/1</code> (PC Finance - VLAN 10)
+            </td>
+          </tr>
+          <tr>
+            <td><strong>SW-BR-ADM</strong></td>
+            <td><code>Fa0/1</code> (dari Switch Finance)</td>
+            <td>
+              <code>Fa1/1</code> (Access Point - VLAN 20), <code>Fa2/1</code> (PC1 - VLAN 20),<br>
+              <code>Fa3/1</code> (PC2 - VLAN 20), <code>Fa4/1</code> (Printer1 - VLAN 20)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 6: SERVER0 -->
+    <section id="sec-cisco-services" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">6. Cisco: Konfigurasi Layanan Server0 (DNS, Web, Mail)</div>
+        <span class="lesson-badge">Paket B - Server Services</span>
+      </div>
+
+      <p>
+        Server0 menggunakan 1 kartu jaringan fisik pada IP statis <code>192.168.1.100</code> yang melayani 3 service sekaligus.
+      </p>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">1. Pengaturan DNS Server (Tab Services &rarr; DNS):</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">DNS Service: ON</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Name: usklsp.com &rarr; IP: 192.168.1.100</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Name: lspsmk.net &rarr; IP: 192.168.1.100</span>
+      </div>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">2. Pengaturan Web Server (Tab Services &rarr; HTTP):</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">HTTP &amp; HTTPS: ON</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Edit index.html &rarr; Isi judul: Portal USK LSP - PT Digital Techno Indonesia</span>
+      </div>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">3. Pengaturan Mail Server (Tab Services &rarr; EMAIL):</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">SMTP &amp; POP3: ON</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Domain Name: lspsmk.net &rarr; Klik Set</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Buat User: nama1, nama2 (Password: 123456)</span>
+      </div>
+
+      <div class="concept-box">
+        <div class="concept-title">Cara Siswa Menguji Kirim-Terima Email di Packet Tracer:</div>
+        1. Buka <strong>PC Ruang ADM Jakarta</strong> &rarr; Tab <strong>Desktop</strong> &rarr; Buka aplikasi <strong>Email</strong>.<br>
+        2. Masukkan konfigurasi akun: Your Name: <code>nama1</code>, Email: <code>nama1@lspsmk.net</code>, Incoming &amp; Outgoing Mail Server: <code>192.168.1.100</code> (atau <code>lspsmk.net</code>), User: <code>nama1</code>, Pass: <code>123456</code>.<br>
+        3. Buka <strong>PC Finance Bandung</strong> &rarr; Set akun email sebagai <code>nama2@lspsmk.net</code>.<br>
+        4. Klik <strong>Compose</strong> dari PC 1 &rarr; Kirim email ke <code>nama2@lspsmk.net</code> &rarr; Klik <strong>Send</strong>.<br>
+        5. Di PC 2, klik tombol <strong>Receive</strong>: Pesan email wajib masuk ke kotak masuk.
+      </div>
+    </section>
+
+    <!-- SECTION 7: MIKROTIK WAN & LAN -->
+    <section id="sec-mik-wan" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">7. Mikrotik: DNS, NTP, WAN &amp; NAT Masquerade</div>
+        <span class="lesson-badge">Paket C - Poin 1 s/d 5</span>
+      </div>
+
+      <p>
+        Mempersiapkan router agar terhubung ke jaringan internet penyedia layanan (ISP) dan mendistribusikan koneksi ke jaringan lokal.
+      </p>
+
+      <!-- SIMULASI WINBOX NAT -->
+      <div class="winbox-window">
+        <div class="wb-titlebar">
+          <span>NAT Rule &lt;new&gt; - IP Firewall NAT</span>
+          <span>[X]</span>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab active">General</div>
+          <div class="wb-tab">Advanced</div>
+          <div class="wb-tab">Extra</div>
+          <div class="wb-tab">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Chain:</span>
+            <span class="wb-select">srcnat</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Out. Interface:</span>
+            <span class="wb-input">ether1</span>
+            <span class="wb-hint">&bull; Hubungkan ke port ISP</span>
+          </div>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab">General</div>
+          <div class="wb-tab active">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Action:</span>
+            <span class="wb-select">masquerade</span>
+            <span class="wb-hint">&bull; Menyamarkan IP lokal menjadi IP Publik ISP</span>
+          </div>
+        </div>
+      </div>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">Pengaturan NTP Client (Poin 2):</h4>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">System &rarr; Clock</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Time Zone: Asia/Jakarta</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">System &rarr; NTP Client</span> <span class="bc-arrow">&rarr;</span>
+        <span class="bc-step">Enabled: Checked &bull; Servers: id.pool.ntp.org</span>
+      </div>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+        *Catatan: Sinkronisasi waktu wajib aktif agar aturan pembatasan jam internet Hotspot (07.00 - 16.00) dapat berjalan tepat waktu.
+      </p>
+    </section>
+
+    <!-- SECTION 8: LAN /25 -->
+    <section id="sec-mik-lan" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">8. Mikrotik: Jaringan Lokal LAN (/25) &amp; Pool 99 Client</div>
+        <span class="lesson-badge">Paket C - Poin 6 &amp; 7</span>
+      </div>
+
+      <div class="concept-box">
+        <div class="concept-title">Bedah Subnetting IP 192.168.50.1/25:</div>
+        Prefix <code>/25</code> menggunakan subnet mask <code>255.255.255.128</code> (Total 128 IP Address).<br>
+        &bull; <strong>Network Address:</strong> <code>192.168.50.0</code> (Tidak bisa dipakai host)<br>
+        &bull; <strong>IP Gateway Router:</strong> <code>192.168.50.1</code><br>
+        &bull; <strong>Rentang Host Valid:</strong> <code>192.168.50.1</code> s.d. <code>192.168.50.126</code><br>
+        &bull; <strong>Broadcast Address:</strong> <code>192.168.50.127</code> (Tidak bisa dipakai host)<br>
+        Karena soal meminta <strong>DHCP Pool sebanyak 99 Client</strong>, maka rentang yang dialokasikan di menu IP Pool adalah: <strong>192.168.50.2 s.d. 192.168.50.100</strong> (Tepat berjumlah 99 IP address).
+      </div>
+
+      <!-- SIMULASI WINBOX IP POOL -->
+      <div class="winbox-window">
+        <div class="wb-titlebar">
+          <span>IP Pool &lt;pool-lan&gt;</span>
+          <span>[X]</span>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Name:</span>
+            <span class="wb-input">dhcp-pool-lan</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Addresses:</span>
+            <span class="wb-input">192.168.50.2-192.168.50.100</span>
+            <span class="wb-hint">&bull; Pool presisi 99 host untuk client kabel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: FIREWALL & LOGGING -->
+    <section id="sec-mik-firewall" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">9. Mikrotik: Aturan Firewall Filter &amp; Logging ke Disk</div>
+        <span class="lesson-badge">Paket C - Poin 8, 9, 10</span>
+      </div>
+
+      <div class="callout callout-amber">
+        <strong>PENTING - URUTAN RULE SANGAT MENENTUKAN NILAI:</strong><br>
+        Firewall Mikrotik membaca aturan dari atas ke bawah (Top to Bottom). Aturan <strong>Poin 10 (Logging)</strong> harus ditaruh pada urutan pertama (paling atas). Jika rule Drop ditaruh lebih atas, paket ICMP akan langsung dibuang dan tidak akan sempat tercatat di log!
+      </div>
+
+      <!-- SIMULASI WINBOX RULE 1 LOGGING -->
+      <div class="winbox-window">
+        <div class="wb-titlebar">
+          <span>Firewall Rule [0] - Logging Akses (Poin 10)</span>
+          <span>[X]</span>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab active">General</div>
+          <div class="wb-tab">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Chain:</span>
+            <span class="wb-select">input</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Connection State:</span>
+            <span class="wb-select">new</span>
+          </div>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab">General</div>
+          <div class="wb-tab active">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Action:</span>
+            <span class="wb-select">log</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Log Prefix:</span>
+            <span class="wb-input">[ROUTER-ACCESS]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIMULASI WINBOX RULE 2 DROP PING ROUTER -->
+      <div class="winbox-window">
+        <div class="wb-titlebar">
+          <span>Firewall Rule [1] - Drop Ping Router (Poin 8)</span>
+          <span>[X]</span>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab active">General</div>
+          <div class="wb-tab">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Chain:</span>
+            <span class="wb-select">input</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Src. Address:</span>
+            <span class="wb-input">192.168.50.2-192.168.50.50</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Protocol:</span>
+            <span class="wb-select">1 (icmp)</span>
+          </div>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab">General</div>
+          <div class="wb-tab active">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Action:</span>
+            <span class="wb-select">drop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIMULASI WINBOX RULE 3 DROP PING WIRELESS -->
+      <div class="winbox-window">
+        <div class="wb-titlebar">
+          <span>Firewall Rule [2] - Drop Ping Wireless (Poin 9)</span>
+          <span>[X]</span>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab active">General</div>
+          <div class="wb-tab">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Chain:</span>
+            <span class="wb-select">forward</span>
+            <span class="wb-hint">&bull; Menggunakan chain forward karena melewati router menuju jaringan lain</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Src. Address:</span>
+            <span class="wb-input">192.168.50.51-192.168.50.100</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Dst. Address:</span>
+            <span class="wb-input">192.168.20.0/24</span>
+          </div>
+          <div class="wb-row">
+            <span class="wb-label">Protocol:</span>
+            <span class="wb-select">1 (icmp)</span>
+          </div>
+        </div>
+        <div class="wb-tabs">
+          <div class="wb-tab">General</div>
+          <div class="wb-tab active">Action</div>
+        </div>
+        <div class="wb-body">
+          <div class="wb-row">
+            <span class="wb-label">Action:</span>
+            <span class="wb-select">drop</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: HOTSPOT & MIKHMON -->
+    <section id="sec-mik-hotspot" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">10. Mikrotik: Hotspot Server &amp; Pembuatan User di Mikhmon</div>
+        <span class="lesson-badge">Paket C - Poin 11 s/d 15</span>
+      </div>
+
+      <p>
+        Jaringan wireless menggunakan IP <code>192.168.20.1/24</code> yang disebarkan melalui Access Point dengan nama SSID: <strong>nama_peserta@ProxyUKK</strong>.
+      </p>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">Tahapan di Aplikasi Mikhmon (Poin 14):</h4>
+      <ol style="margin-left:20px; font-size:13px; line-height:1.8;">
+        <li>Buka aplikasi Mikhmon pada browser, koneksikan ke IP Mikrotik menggunakan port API <code>8728</code>.</li>
+        <li>Buka menu <strong>Hotspot &rarr; User Profile &rarr; Add Profile</strong>:<br>
+          &bull; <strong>Profile A:</strong> Name: <code>UKK-5M</code> &bull; Rate Limit: <code>5M/5M</code> &bull; Validity: <code>10m</code>.<br>
+          &bull; <strong>Profile B:</strong> Name: <code>UKK-2M</code> &bull; Rate Limit: <code>2M/2M</code> &bull; Validity: <code>5m</code>.
+        </li>
+        <li>Buka menu <strong>Hotspot &rarr; Users &rarr; Generate</strong>:<br>
+          &bull; Generate 1: Jumlah: <code>5</code>, User Mode: <code>Username = Password</code>, Profile: <code>UKK-5M</code>, Time Limit: <code>10m</code>.<br>
+          &bull; Generate 2: Jumlah: <code>5</code>, User Mode: <code>Username = Password</code>, Profile: <code>UKK-2M</code>, Time Limit: <code>5m</code>.
+        </li>
+      </ol>
+
+      <h4 style="font-size:14px; margin: 16px 0 8px;">Pembatasan Jam Internet Hotspot (Poin 15: 07.00 - 16.00):</h4>
+      <p style="font-size:13px; color:var(--text-muted);">
+        Internet hanya diizinkan pukul 07.00 sampai 16.00. Karena itu, kita memblokir akses di luar jam tersebut (pukul 16.00-24.00 dan 00.00-07.00):
+      </p>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">Rule Drop Malam: Chain forward &bull; Src: 192.168.20.0/24 &bull; Time: 16:00:00 - 23:59:59 &bull; Action: drop</span>
+      </div>
+      <div class="breadcrumb-flow">
+        <span class="bc-step">Rule Drop Dini Hari: Chain forward &bull; Src: 192.168.20.0/24 &bull; Time: 00:00:00 - 07:00:00 &bull; Action: drop</span>
+      </div>
+    </section>
+
+    <!-- SECTION 11: PROXY & FILTERING -->
+    <section id="sec-mik-proxy" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">11. Mikrotik: Web Proxy Access, Blocking Site, File &amp; Redirect</div>
+        <span class="lesson-badge">Paket C - Poin 16 s/d 19</span>
+      </div>
+
+      <p>
+        Web Proxy diaktifkan pada port <code>8080</code> dengan parameter cache administrator: <strong>nama_peserta@sekolah.sch.id</strong>. Seluruh traffic HTTP port 80 dari client diarahkan secara transparan ke proxy menggunakan aturan NAT Redirect.
+      </p>
+
+      <h4 style="font-size:14px; margin-bottom:8px;">Aturan Web Proxy Access (IP &rarr; Web Proxy &rarr; Access):</h4>
+      <table class="guide-table">
+        <thead>
+          <tr><th>Poin Soal</th><th>Parameter Input</th><th>Action</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Poin 16 (Site)</strong></td>
+            <td>Dst. Host: <code>*detik.com*</code></td>
+            <td><code>deny</code></td>
+            <td>Memblokir domain www.detik.com</td>
+          </tr>
+          <tr>
+            <td><strong>Poin 17 (File)</strong></td>
+            <td>Path: <code>*.mp3*</code></td>
+            <td><code>deny</code></td>
+            <td>Memblokir unduhan file audio MP3</td>
+          </tr>
+          <tr>
+            <td><strong>Poin 17 (File)</strong></td>
+            <td>Path: <code>*.mkv*</code></td>
+            <td><code>deny</code></td>
+            <td>Memblokir unduhan file video MKV</td>
+          </tr>
+          <tr>
+            <td><strong>Poin 18 (Konten)</strong></td>
+            <td>Path: <code>*games*</code></td>
+            <td><code>deny</code></td>
+            <td>Memblokir URL yang memuat kata "games"</td>
+          </tr>
+          <tr>
+            <td><strong>Poin 19 (Redirect)</strong></td>
+            <td>Dst. Host: <code>*lionair.co.id*</code></td>
+            <td><code>deny</code> &bull; Redirect to: <code>bnsp.go.id</code></td>
+            <td>Mengarahkan akses lionair ke situs resmi BNSP</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="concept-box">
+        <div class="concept-title">Solusi Menghadapi Situs HTTPS (Mengapa Harus Tambah TLS-Host?):</div>
+        Web Proxy tradisional hanya mampu membaca lalu lintas HTTP biasa (Port 80) karena data tidak terenkripsi. Pada situs HTTPS modern (seperti <code>www.detik.com</code> pada Port 443), data terenkripsi SSL/TLS sehingga Web Proxy tidak bisa membaca path URL.<br>
+        <strong>Solusi Cerdas:</strong> Tambahkan aturan di <strong>IP Firewall Filter</strong> dengan parameter:<br>
+        <code>Chain: forward &bull; Protocol: tcp &bull; Dst. Port: 443 &bull; TLS Host: *detik.com* &bull; Action: drop</code>.<br>
+        Dengan trik ini, pengujian buka detik.com di HP maupun laptop dijamin 100% langsung terblokir di depan asesor!
+      </div>
+    </section>
+
+    <!-- SECTION 12: TEORI & OSI -->
+    <section id="sec-teori-osi" class="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-title">12. Dokumen Perencanaan: Gedung 4 Lantai &amp; Analisis Layer OSI</div>
+        <span class="lesson-badge">Bagian 1 - Teori &amp; Analisis</span>
+      </div>
+
+      <p>
+        Berdasarkan studi kasus PT. Teknologi Warungpedia: 1 Gedung dengan 4 lantai, 8 ruangan (2 ruangan per lantai), masing-masing ruangan berisi 3 client workstation = <strong>Total 24 Client PC</strong> terkoneksi ke Proxy dan Mail Server.
+      </p>
+
+      <table class="guide-table">
+        <thead>
+          <tr><th>Lapisan OSI</th><th>Perangkat Terpasang</th><th>Karakteristik &amp; Analisis Performa</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Layer 1 (Physical)</strong></td>
+            <td>Kabel UTP Cat5e, RJ45, Hub 8-Port</td>
+            <td>Mentransmisikan sinyal elektrik biner. Kabel Cat5e mampu mentransfer data hingga 1000 Mbps pada jarak 100 meter. Hub beroperasi dengan shared collision domain untuk kebutuhan pemantauan traffic sederhana.</td>
+          </tr>
+          <tr>
+            <td><strong>Layer 2 (Data Link)</strong></td>
+            <td>Switch 24-Port, NIC Client, Wireless AP</td>
+            <td>Meneruskan frame data berdasarkan tabel MAC Address. Setiap port switch membentuk dedicated collision domain mandiri (Full Duplex 1 Gbps), mencegah terjadinya tabrakan paket antarkomputer di 8 ruangan.</td>
+          </tr>
+          <tr>
+            <td><strong>Layer 3 (Network)</strong></td>
+            <td>Router MikroTik, IP Routing</td>
+            <td>Menangani logical IP addressing, pemisahan broadcast domain antarlantai, routing antarsubnet (LAN, WLAN, WAN), Network Address Translation (NAT Masquerade), dan packet inspection pada Firewall Filter.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
