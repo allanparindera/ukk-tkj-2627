@@ -26,6 +26,7 @@
       <summary class="mobile-toc-toggle">Daftar Materi Praktikum (Klik untuk Buka/Tutup)</summary>
       <div class="sidebar-links">
         <div class="toc-category">Kabel &amp; Perangkat Fisik</div>
+        <a href="#beda-soal" class="toc-link">Beda dari lembar soal</a>
         <a href="#sec-kabel" class="toc-link">1. Crimping Kabel UTP T568B</a>
         <a href="#sec-cisco-rack" class="toc-link">2. Cisco: Pasang Modul WIC-2T di Router</a>
         <a href="#sec-cisco-laptop" class="toc-link">3. Cisco: Pasang Wi-Fi WPC300N di Laptop</a>
@@ -51,6 +52,25 @@
 
   <!-- Content -->
   <main class="main-content">
+<section class="deviation" id="beda-soal">
+  <h2>Beda dari lembar soal, dan alasannya</h2>
+  <p>Lembar soal tidak lengkap atau ambigu di beberapa titik. Aplikasi ini mengisi celah itu dengan pilihan di bawah. Cocokkan dengan denah di lab, dan kalau asesor memutuskan lain, ubah di bagian ini.</p>
+  <div class="table-scroll"><table class="guide-table">
+    <thead><tr><th>Hal</th><th>Di lembar soal</th><th>Di aplikasi</th><th>Alasan</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IP server</strong></td><td>DNS DHCP ke <code>192.168.1.2</code>. Web Server <code>192.168.1.100</code>.</td><td>Server0 satu IP <code>192.168.1.100</code>: DNS, Web, dan Mail. DNS di DHCP juga <code>192.168.1.100</code>.</td><td>Gambar hanya punya satu Server0 dengan satu port Fa0. Satu port tidak bisa memegang dua IP.</td></tr>
+      <tr><td><strong>IP serial WAN</strong></td><td>Hanya menyebut network <code>10.10.10.0/24</code>.</td><td>Router HQ <code>10.10.10.1</code>, Router Cabang <code>10.10.10.2</code>.</td><td>Interface butuh IP agar RIP dan ping jalan. Urutan .1 dan .2 pilihan kita.</td></tr>
+      <tr><td><strong>Clock rate</strong></td><td>Tidak ada di CLI soal.</td><td>Tidak dipasang di router.</td><td>Di gambar ikon jam (DCE) ada di sisi Cloud. Ini pembacaan gambar, belum diuji. Kalau link serial tetap down, pasang <code>clock rate 64000</code> di interface yang jadi DCE.</td></tr>
+      <tr><td><strong>CLI Router HQ</strong></td><td>Hanya ada CLI sisi Cabang. Bagian HQ terpotong.</td><td>CLI HQ dibuat mengikuti pola Cabang dengan IP Pusat.</td><td>Soal meminta Router Pusat dikonfigurasi, tetapi perintahnya tidak tertulis.</td></tr>
+      <tr><td><strong>Baris dobel di soal</strong></td><td><code>encap dot1q 20</code> tertulis dua kali di sub-interface <code>fa0/0.20</code>.</td><td>Ditulis satu kali.</td><td>Baris kedua tidak berguna.</td></tr>
+      <tr><td><strong>Switch Finance</strong></td><td>CLI hanya mengisi port <code>fa2/1</code> dan <code>fa3/1</code>.</td><td>Ditambah <code>fa4/1</code> untuk perangkat ketiga.</td><td>Teks soal: ruang Finance berisi PC, Laptop, dan Printer. Tiga perangkat butuh tiga port. Cek jumlahnya ke gambar di lab.</td></tr>
+      <tr><td><strong>User email</strong></td><td><code>nama1, nama2, nama3 dst</code>.</td><td><code>nama1</code>, <code>nama2</code>, <code>nama3</code>.</td><td>Sesuai soal. Tambah user lagi bila perlu.</td></tr>
+      <tr><td><strong>Domain email Mikrotik</strong></td><td><code>nama_peserta@sekolah.sch.id</code>.</td><td>Default <code>sekolah.sch.id</code>, bisa diganti di kolom domain.</td><td>Sama persis dengan soal.</td></tr>
+      <tr><td><strong>Poin 19, bypass lionair ke bnsp</strong></td><td>Kalimat bisa berarti dialihkan (redirect) atau dibuka tanpa login hotspot.</td><td>Default redirect. Ada pilihan walled garden.</td><td>Tanyakan ke asesor maksud yang dipakai.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<div class="callout callout-amber untested"><strong>Belum diuji di perangkat asli.</strong> Script Mikrotik belum dijalankan di RouterOS, dan CLI Cisco belum dijalankan di Packet Tracer. Sintaksnya dicek manual. Coba sekali di lab sebelum hari UKK, lalu laporkan baris yang error. Blokir file, kata games, dan redirect lewat web proxy hanya bekerja di situs HTTP, bukan HTTPS.</div>
 
     <!-- BAB 1: KABEL -->
     <section id="sec-kabel" class="lesson-section">
@@ -296,7 +316,7 @@
       <div class="breadcrumb-flow">
         <span class="bc-step">SMTP &amp; POP3: ON</span> <span class="bc-arrow">&rarr;</span>
         <span class="bc-step">Domain Name: lspsmk.net &rarr; Klik Set</span> <span class="bc-arrow">&rarr;</span>
-        <span class="bc-step">User Setup: nama1 &amp; nama2 (Password: 123456)</span>
+        <span class="bc-step">User Setup: nama1, nama2, nama3 (Password: 123456)</span>
       </div>
 
       <div class="concept-box">

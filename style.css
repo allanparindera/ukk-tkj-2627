@@ -431,3 +431,11 @@ footer { text-align: center; padding: 20px; font-size: 13px; color: var(--ink-3)
   .sig-space { height: 60px; }
   .sig-name { font-weight: 700; text-decoration: underline; }
 }
+
+/* ---------- deviation notes ---------- */
+.deviation { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--warn); border-radius: var(--r-md); padding: 22px 28px; margin-bottom: 28px; }
+.deviation h2 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+.deviation > p { max-width: var(--measure); margin-bottom: 12px; color: var(--ink-2); }
+.deviation .table-scroll > table { min-width: 720px; }
+@media (max-width: 900px) { .deviation { padding: 18px 14px; } }
+@media print { .deviation, .untested { display: none !important; } }
